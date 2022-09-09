@@ -1,0 +1,11 @@
+.page {
+	text-align: center;
+}
+.logo {
+  width: 100rpx;
+  height: 150rpx;
+  margin-top: 367rpx;
+}
+.title {
+	font-size: 32rpx;
+}

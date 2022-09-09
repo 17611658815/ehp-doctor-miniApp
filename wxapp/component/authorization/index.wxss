@@ -1,0 +1,48 @@
+
+@import '../../app.wxss';
+
+.auth-content{
+	width: 614rpx;
+	border-radius: 20rpx;
+	background-color: #fff;
+	z-index: 99999;
+	padding: 30rpx 0;
+	
+}
+
+.container .van-popup  {
+	border-radius: 10px;
+	border-radius: var(--popup-round-border-radius,10px);
+	position: fixed;
+	box-sizing: border-box;
+	max-height: 100%;
+	overflow-y: auto;
+	transition-timing-function: ease;
+	-webkit-animation: ease both;
+	animation: ease both;
+	-webkit-overflow-scrolling: touch;
+	background-color: #fff;
+	background-color: var(--popup-background-color,#fff);
+}
+
+.auth-btn{
+	margin: 10rpx 20rpx 0  20rpx;
+	height: 80rpx;
+	border-radius: 8rpx;
+}
+.noAuth-btn{
+	border: 1px solid #eee;
+}
+.login{
+  margin: 0 auto;
+  width: 272rpx;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  background: var(--themeColor);
+  color: #fff;
+  margin-bottom: 40rpx;
+  border-radius: var(--btnRadius);
+}
+.cFF4900{color: #FF4900}
+.c389AFF{color: #389AFF;}

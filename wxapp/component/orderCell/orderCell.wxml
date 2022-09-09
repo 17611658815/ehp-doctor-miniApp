@@ -1,0 +1,53 @@
+<!-- component/orderCell/orderCell.wxml -->
+<block wx:if='{{orderList.length}}'>
+    <view class="item" bindtap="onTap" data-item='{{item}}' wx:for='{{orderList}}'>
+        <view class="orderHead p30">
+            订单号：{{item.orderSn}}
+            <view class="status">
+                <text wx:if="{{item.status==1}}" class="f32" style="color:#F06454">待支付</text>
+                <text wx:elif="{{item.status==2 ||item.status==6 || item.status==7 || item.status==8 || item.status==9 }}" class="f32" style="color:#FF9A46">待发货</text>
+                <text wx:elif="{{item.status==3}}" class="f32" style="color:#2893FF">待收货</text>
+                <text wx:elif="{{item.status==4 || item.status==5}}" class="f32" style="color:#38BF87">已结束</text>
+                <!-- <text wx:elif="{{item.status==5}}" class="f32" style="color:#999999">已取消</text>
+                <text wx:elif="{{item.status==6}}" class="f32" style="color:#F06454">退货中</text>
+                <text wx:elif="{{item.status==7}}" style="color:#999999" class="f32">已关闭</text> -->
+            </view>
+        </view>
+        <view class="orderContent p30">
+            <view class="shopItem" wx:for="{{item.items}}" wx:for-item="key" wx:key="index">
+                <view class="img">
+                    <image lazy-load src="{{key.icon}}" mode="center"></image>
+                </view>
+                <view class="info">
+                    <view class="title f32">{{key.name}}</view>
+               <view class="clearfix">
+                        <view class="price">￥{{key.price}}</view>
+                        <view class="count">x{{key.quantity}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="orderFot p30">
+            <view class="total">
+                共{{item.quantity}}件商品 合计：¥{{item.realPay}}（含运费{{item.freight}}元）
+            </view>
+            <block wx:if="{{item.status==1}}">
+                <view class="prompt f24">24小时内未支付，订单将自动取消</view>
+                <view class="btn">
+                    <text class="removeBtn" catchtap="onCancel"  data-item='{{item}}'>取消订单</text>
+                    <text class="payBtn" catchtap="onPay" data-item='{{item}}' >支付</text>
+                </view>
+            </block>
+            <block wx:if="{{item.status==3 || item.status==4}}">
+                <view class="btn mt20">
+                    <text class="removeBtn lookWl" catchtap="onlook"  data-item='{{item}}'>查看物流</text>
+                </view>
+            </block>
+        </view>
+    </view>
+</block>
+
+<view wx:else class="flex_line_c no_msg_box">
+    <image class="no_msg" src="{{static.nomes}}"></image>
+    <view class="f28 c666">暂无数据</view>
+</view>

@@ -1,0 +1,89 @@
+/* 公用btn */
+.themeBtn {
+  background: var(--btnThemeColor);
+  color: var(--whiteColor);
+  box-shadow: var(--btnShadow);
+  border-radius: var(--btnRadius);
+  line-height: 100rpx;
+  border: none;
+}
+/* 底部定位按钮 */
+.confir {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-top: 1rpx solid #eee;
+}
+.confir button {
+  color: #fff;
+  background: var(--btnThemeColor);
+  border-radius: var(--btnRadius);
+  height: 96rpx;
+  line-height: 96rpx;
+  font-size: 32rpx;
+}
+.confir button::after {
+  border: none;
+}
+
+/* 底部按钮样式 */
+.fixed-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 140rpx;
+  background: #ffffff;
+}
+.fixed-button .bttom-btn {
+  flex: 1;
+  background: var(--btnThemeColor);
+  border-radius: var(--btnRadius);
+  font-size: 32rpx;
+  text-align: center;
+  color: #ffffff;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.button {
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  margin: 0 68rpx;
+  position: relative;
+}
+
+button::after {
+  border: none;
+}
+.button button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+}
+.button.primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    30deg,
+    rgba(5, 191, 204, 1) 0%,
+    rgba(22, 203, 216, 1) 100%
+  );
+  border-radius: 44rpx;
+  padding: 0 75rpx;
+  color: #fff;
+}
+.button.disable {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ebebed;
+  border-radius: 4rpx;
+  color: #666666;
+}

@@ -1,0 +1,6 @@
+{
+	"usingComponents": {
+		"vant-icon": "/lib/vant-weapp/icon/index"
+  },
+  "navigationBarTitleText": "登录"
+}

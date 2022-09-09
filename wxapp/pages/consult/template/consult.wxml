@@ -1,0 +1,239 @@
+<template name="consult">
+	<!-- 消息记录 -->
+	<scroll-view enable-flex='true' scroll-y scroll-anchoring="{{true}}" class='record-wrapper'
+		scroll-into-view="{{scrollIntoView}}" id="recordWrapper" enable-passive='{{true}}' upper-threshold="100"
+		style="bottom: {{isAgain ? '' : 'unset'}};height: {{scrollHeight}};top:{{scrollTop}}" bindscrolltoupper="loadMore"
+		wx:if='{{messageArr.length}}'>
+		<block wx:for="{{messageArr}}" wx:for-item="message" wx:key="{{message.sendTime}}">
+			<view class="timeText" hover-class="none" wx:if='{{message.timeGroup}}' hover-stop-propagation="false">
+				{{message.timeText}}
+			</view>
+			<view wx:for='{{message.messages}}' wx:key="{{item.sendTime}}" id="chat_{{item.sendTime}}" wx:for-item="item"
+				hover-class="none" hover-stop-propagation="false">
+				
+				<view wx:if="{{item.relation == 0 && (item.type == 1 || item.type == 2 || item.type == 4)}}"
+					class='{{item.relation == 0 ? "record-chatting-item  other" : ""}}' style='justify-content: flex-start'>
+						<view class="right-triangle mr20">
+						<image class="avatar" src="{{patientRemarkInfo.patientIcon}}" mode="aspectFit" />
+					</view>
+					<view wx:if="{{item.type == 4}}" class='audio-wrapper sendaudio' data-doctorName='{{message.doctorName}}'
+						data-audio="{{item.content.path}}" catchtap='playAudio'>
+						<image src='/static/images/audio2.png' class='image'></image>
+							<view wx:if="{{item.type == 4}}" class='f32 c333 ml10'>{{item.content.timeLength}}''</view>
+					</view>
+					<view wx:if="{{item.type == 1}}" class='record-chatting-item-text sendtext f32'>{{item.content}}
+					</view>
+					<view wx:if="{{item.type == 2}}" class='record-chatting-item-image sendimage'>
+						<image bindtap="previewImage" data-src="{{baseUrl}}{{item.content.path}}" wx:if='{{message.patientHeadurl}}'
+							mode='aspectFill' src="{{baseUrl}}{{item.content.path}}?view=t"></image>
+						<image bindtap="previewImage" data-src="{{item.content.path}}" wx:else mode='aspectFill'
+							src="{{item.content.path}}?view=t"></image>
+					</view>
+					<!-- <view class="right-triangle ml20">
+						<image class="avatar" src="{{avatar}}" mode="aspectFit" />
+					</view> -->
+				</view>
+				<view
+					wx:if="{{item.relation == 1 && (item.type == 1 || item.type == 2 || item.type == 4 || item.type == 16 || item.type == 10005 ||item.type == 10013)}}"
+					class='{{item.relation == 1 ? "record-chatting-item self" : ""}}' style='justify-content: flex-end'>
+					<!-- <image catchtap='goDoctorDetail' mode="aspectFill" wx:if='{{doctorInfo.photo}}'
+						src='{{doctorInfo ? doctorInfo.photo : "/static/images/doctor_icon.png"}}'
+						class='record-chatting-item-img mr20'></image>
+					<image catchtap='goDoctorDetail' wx:else
+						src='{{message.doctorHeadurl ? message.doctorHeadurl : "/static/images/doctor_icon.png"}}'
+						class='record-chatting-item-img mr20'></image> -->
+					<!-- 处方 -->
+					<view wx:if="{{item.type == 16}}" class="systemChat" data-type='2' data-url='/pages/recipeDetail/recipeDetail?recomId={{item.content.recommandId}}' data-id='{{item.content.recommandId}}'
+						catchtap='goPage'>
+						<view class="recipel">
+							<view class="recipelMess">
+								<view class="title flex_m f28 pl20 blue">
+									处方详情如下 共{{item.content.items.length}}种
+									<image class="bg_image" src="{{static.bg_prescription}}"></image>
+								</view>
+								<view class="drug p20" hover-class="none" hover-stop-propagation="false" wx:for='{{item.content.items}}'
+									wx:for-item="item">
+									<view class="flex_lr " hover-class="none" hover-stop-propagation="false">
+										<view class="f28 c333 flex1 ell_more ell_1" hover-class="none" hover-stop-propagation="false">
+											{{item.productName}}
+										</view>
+										<view class="f28 c333" hover-class="none" hover-stop-propagation="false">
+											x {{item.quantity}}
+										</view>
+									</view>
+									<view class="f24 c999" hover-class="none" hover-stop-propagation="false">
+										用法：{{item.usage}}
+									</view>
+								</view>
+							</view>
+							<view class="sys-btn bt1 f28 flex_c_m color-primary">
+								{{item.content.auditDesc}}
+							</view>
+						</view>
+					</view>
+					<!-- 病例 -->
+					<view wx:if="{{item.type == 10005}}" class="systemChat" data-url='/pages/caseDetail/index?id={{item.content.medicalRecordId}}' data-type='1'
+						data-id='{{item.content.medicalRecordId}}' catchtap='goPage'>
+						<view class="recipel">
+							<view class="recipelMess">
+								<view class="title2 flex_m f28 pl20" style='color:#FF9A46'>
+									本次问诊电子病历
+									<image class="bg_image" src="{{static.bg_medical_record}}"></image>
+								</view>
+								<view class="flex_m p20 b">
+									<view class="f28 c333">
+										{{item.content.patientName}}
+									</view>
+									<view class="f28 c333 ml10">
+										{{item.content.gender}}
+									</view>
+									<view class="f28 c333 ml10">
+										{{item.content.age}}
+									</view>
+								</view>
+								<view class="flex_m pl20 pr20">
+									<view class="f28 c999">
+										诊断：
+									</view>
+									<view class="flex1 f28 c333 ell_more ell_1">
+										{{item.content.diagnosis}}
+									</view>
+								</view>
+								<view class="flex_m pl20 pr20 pb20">
+									<view class="f28 c999">
+										主诉：
+									</view>
+									<view class="flex1 f28 c333 ell_more ell_1">
+										{{item.content.mainComplaint}}
+									</view>
+								</view>
+							</view>
+							<view class="sys-btn bt1 f28 flex_c_m" style='color:#FF9A46'>
+								查看详情
+							</view>
+						</view>
+					</view>
+					<!-- 随访问卷 -->
+					<view wx:if="{{item.type == 10013}}" class="systemChat" data-type='5' data-ctype='{{item.content.type}}' data-id='{{item.content.followUpId}}' data-followUpNo='{{item.content.followUpNo}}'
+						catchtap='goPage'>
+						<view class="recipel">
+							<view class="recipelMess">
+								<view class="title2 flex_m f28 pl20" style='color:#38BF87'>
+									<image style="height:32rpx;width:32rpx" src="{{ item.content.type == 1 ? static.ic_follow_visit_01 : static.ic_follow_questionnaire_02}}"></image>
+								 	<text class="ml5">{{item.content.type == 1?'随访复诊':'随访问卷'}}</text>
+									<image class="bg_image" src="{{static.bg_follow}}"></image>
+								</view>
+								<view class="p20">
+									<view class="flex" wx:if='{{item.content.type == 2}}'>
+										<text class="f28 c999" style="width:140rpx">随访名称：</text>
+										<text class="f28 c333 flex1">{{item.content.followUpName}}</text>
+									</view>
+									<view class="flex_m" wx:if='{{item.content.type == 2}}'>
+										<text class="f28 c999">执行时间：</text>
+										<text class="f28 c333 flex1">{{item.content.beginTime}}</text>
+									</view>
+									<view>
+										<text class="f28 c999">随访提醒：</text>
+										<text class="f28 c333 flex1">医生{{item.content.followUpRemind}}</text>
+									</view>
+								</view>
+							</view>
+							<view class="sys-btn bt1 f28 flex_c_m" style='color:#38BF87'>
+								查看详情
+							</view>
+						</view> 
+					</view>
+					<view wx:if="{{item.type == 4}}" data-audio="{{item.content.path}}" data-doctorName='{{message.doctorName}}'
+						catchtap='playAudio' class='audio-wrapper receiveaudio'>
+						<text wx:if="{{item.type == 4}}" class='f32 cfff mr10'>''{{item.content.timeLength}}</text>
+							<image src='/static/images/audio.png' class='image'></image>
+					</view>
+					<view wx:if="{{item.type == 1}}" class='record-chatting-item-text receivetext f32'>{{item.content}}
+					</view>
+					<view wx:if="{{item.type == 2}}" class='record-chatting-item-image receiveimage'>
+						<image bindtap="previewImage" data-src="{{baseUrl}}{{item.content.path}}" wx:if='{{message.patientHeadurl}}'
+							mode='aspectFill' src="{{baseUrl}}{{item.content.path}}?view=t"></image>
+						<image bindtap="previewImage" data-src="{{item.content.path}}" wx:else mode='aspectFill'
+							src="{{item.content.path}}?view=t"></image>
+					</view>
+						<image catchtap='goDoctorDetail' mode="aspectFill" src='{{userInfo.headerImageUrl ? userInfo.headerImageUrl : "/static/images/doctor_icon.png"}}'
+						class='record-chatting-item-img ml20'></image>
+				</view>
+				<!-- 病情详情 -->
+				<view class="bg-color-white p30 m30" bindtap='goPage' data-id='{{item.content.diseaseId}}' data-url='/pages/illnessDetail/illnessDetail?diseaseId={{item.content.diseaseId}}' data-type="4"
+					wx:if='{{item.content.specificMessageType  == 2}}'>
+					<view class="f32 c333">
+						<rich-text nodes='{{item.content.text }}'></rich-text>
+					</view>
+				</view>
+				<!-- 系统消息 -->
+				<view wx:if="{{item.type == 10007}}" class="f28 c333 m30 p20 flex_c"
+					style='background: #EAEAEA;border-radius: 8rpx;'>
+					{{item.content}}
+				</view>
+				<!-- 咨询结束系统消息 -->
+				<view wx:if="{{item.type == 10008}}" class="f28 c333 m30 p20 flex_c"
+					style='background: #EAEAEA;border-radius: 8rpx;'>
+					{{item.content}}
+				</view>
+				<!-- 开方系统消息 -->
+				<view wx:if="{{item.type == 10009}}" class="f28 c333 m30 p20 flex_c"
+					style='background: #EAEAEA;border-radius: 8rpx;'>
+					{{item.content}}
+				</view>
+				<!-- 首次问诊系统消息 -->
+				<view wx:if="{{item.type == 10010}}" class="f28 c333 m30 p20 flex_c"
+					style='background: #EAEAEA;border-radius: 8rpx;'>
+					{{item.content}}
+				</view>
+				<!-- 首次未实名 -->
+				<view bindtap="goInquirerDetail" data-id="{{item.inquirerId}}" wx:if="{{item.type == 10011}}"
+					class="f28 c333 m30 p20 flex_c" style='background: #EAEAEA;border-radius: 8rpx;'>
+					<view>{{item.content}}<text class='color-primary'>点击完善</text></view>
+				</view>
+				<!-- 就诊人信息完善消息 -->
+				<view wx:if="{{item.type == 10012}}" class="f28 c333 m30 p20 flex_c"
+					style='background: #EAEAEA;border-radius: 8rpx;'>
+					{{item.content}}
+				</view>
+				<!-- 满意度调查 -->
+				<view wx:if="{{item.type == 10006}}" bindtap="goPage" data-consulttype='{{item.content.consultType}}'
+					data-sessionid='{{item.content.consultSessionId}}' data-type="3" data-url='/pages/addEval/addEval?doctorId={{doctorId}}&consultType={{item.content.consultType}}&consultSessionId={{item.content.consultSessionId}}&type=2' class="evaluate">
+					<view class="bg-color-white">
+						<view class="evaluate-title c666 f32 b flex_c_m">
+							满意度调查
+						</view>
+						<view class="pt30 pb30 c333 f32 flex_c_m">
+							您的满意是对医生最好的感谢！
+						</view>
+						<view class="f28 color-primary bt1 flex_c_m pt20 pb20">
+							评价医生服务
+						</view>
+					</view>
+				</view>
+				<!-- 处方 -->
+				<view wx:if="{{item.type == 16}}" class="systemChat">
+					<view class="recipel" wx:if="{{item.content.type == 2}}">
+						<view class="recipelMess">{{item.content.msg}}</view>
+						<view class="sys-btn" bindtap="goPage" data-type="{{item.type}}" data-payid="{{item.content.params}}">
+							去支付</view>
+					</view>
+					<view class="recipel" wx:if="{{item.content.type == 1}}">
+						<view class="recipelMess">{{item.content.msg}}</view>
+					</view>
+				</view>
+			</view>
+		</block>
+	</scroll-view>
+	<view class="flex_line_c no_msg_box" wx:if='{{isAgain && !messageArr.length}}'>
+		<image class="no_msg" src="{{static.nomes}}"></image>
+		<view class="f28 c666">暂无问诊</view>
+	</view>
+	<view id='fixedButton' class="fixed-button bt1" wx:if='{{isAgain}}' data-id='{{doctorId}}' data-url='/pages/consult/chat/chat?doctorId={{doctorId}}'
+		bindtap="goPage">
+		<view class="f24 c999 flex_c_m pt20 pb20">医生的回复仅为建议，进一步诊疗请到线下医院</view>
+		<view class="bttom-btn">
+			再次问诊
+		</view>
+	</view>
+</template>

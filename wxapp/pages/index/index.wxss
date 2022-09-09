@@ -1,0 +1,30 @@
+/* pages/index/index.wxss */
+.preBtn{
+	width: 136rpx;
+	height: 40rpx;
+	background: #72A4FF;
+	border-radius: 20rpx;
+}
+.docMessage{
+	background: #F2F6FF;
+}
+.consult-list-item{
+	height: 150rpx
+}
+.zhiding,.miandarao,.shanchu{
+	width: 130rpx;
+	height: 150rpx;
+}
+.zhiding{
+	background: var(--btnThemeColor);
+}
+.miandarao{
+	background: var(--orangeColor);
+}
+.shanchu{
+	background: var(--redColor);
+}
+
+.custom-image{
+	
+}

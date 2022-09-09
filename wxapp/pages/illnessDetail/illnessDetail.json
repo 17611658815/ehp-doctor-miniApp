@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "navbar":"/component/nav/nav"
+  },
+  "navigationStyle":"custom",
+  "navigationBarTitleText": "病情详情",
+  "navigationBarBackgroundColor": "#2893FF",
+  "navigationBarTextStyle": "white"
+}

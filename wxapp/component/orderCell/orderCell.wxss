@@ -1,0 +1,136 @@
+/* pages/orderList/orderList.wxss */
+@import "../../app.wxss";
+.item {
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+    /* margin-bottom: 20rpx; */
+    /* padding: 0 32rpx; */
+    margin-top: 20rpx;
+}
+
+.item:last-child {
+    margin-bottom: 0rpx;
+}
+
+.orderHead {
+    width: 100%;
+    box-sizing: border-box;
+    /* padding: 32rpx 0; */
+    font-size: 28rpx;
+    color: #666666;
+}
+
+.orderHead .status {
+    float: right;
+    font-size: 32rpx;
+    font-weight: bold;
+}
+
+.orderContent {
+    /* padding: 32rpx 0; */
+    background: #F8FBFF;
+}
+
+.orderContent .shopItem {
+    overflow: hidden;
+    margin-bottom: 20rpx;
+}
+
+.orderContent .shopItem:last-child {
+    margin-bottom: 0rpx;
+}
+
+.orderContent .shopItem .img {
+    float: left;
+    width: 160rpx;
+    height: 160rpx;
+    line-height: 160rpx;
+}
+
+.orderContent .shopItem .img image {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.orderContent .shopItem .info {
+    float: right;
+    width: 506rpx;
+}
+
+.orderContent .shopItem .info .title {
+    color: #333;
+    line-height: 44rpx;
+    height: 88rpx;
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+}
+
+.orderContent .shopItem .info .clearfix {
+    /* margin-top: 56rpx; */
+    margin-top: 12rpx;
+    font-weight: bold;
+}
+
+.orderContent .shopItem .info .clearfix .price {
+    float: left;
+    font-size: 32rpx;
+    color: #F06454;
+}
+
+.orderContent .shopItem .info .clearfix .count {
+    float: right;
+    font-size: 32rpx;
+    color: #333;
+}
+
+.orderFot {
+    /* padding: 32rpx 0; */
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.orderFot .total {
+    text-align: right;
+    font-size: 28rpx;
+}
+
+.prompt {
+    padding-top: 8rpx;
+    padding-bottom: 20rpx;
+    text-align: right;
+    color: #F06454;
+}
+
+.btn {
+    text-align: right;
+}
+
+.btn text {
+    display: inline-block;
+    height: 60rpx;
+    width: 172rpx;
+    text-align: center;
+    font-size: 24rpx;
+    margin-left: 32rpx;
+    line-height: 60rpx;
+    border-radius: 8rpx;
+    line-height: 56rpx;
+    box-sizing: border-box;
+}
+
+.removeBtn {
+    border: 2rpx solid #999;
+    color: #666;
+}
+.lookWl{
+    border: 2rpx solid var(--themeColor);
+    color: var(--themeColor);
+}
+.payBtn {
+    background: var(--themeColor);
+    border: 2rpx solid var(--themeColor);
+    color: #fff;
+}
+/* var(--whiteColor) */

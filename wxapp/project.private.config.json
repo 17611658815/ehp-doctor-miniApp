@@ -1,0 +1,41 @@
+{
+  "setting": {
+    "compileHotReLoad": false
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "登录",
+          "pathName": "pages/auth/login/login",
+          "query": "roomID=123&template=grid&debugMode=false&localVideo=true&localAudio=true&enableEarMonitor=false&enableAutoFocus=true&localMirror=auto&enableAgc=true&enableAns=true&frontCamera=front&audioVolumeType=auto&audioQuality=high&videoWidth=360&videoHeight=640&userID=1400482510&minBitrate=600&maxBitrate=900&encsmall=false&scene=rtc&cloudenv=PRO&enableBlackStream=0&streamID=&userDefineRecordID=&privateMapKey=&pureAudioMode=&recvMode=&enableRecvMessage=false",
+          "scene": null
+        },
+        {
+          "name": "开屏页",
+          "pathName": "pages/start/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "在线咨询",
+          "pathName": "pages/consult/chat/chat",
+          "query": "patientid=290&sessionid=158_290_1662606790462",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "新增病例",
+          "pathName": "pages/cases/add/index",
+          "query": "id=290",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  },
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "libVersion": "2.26.0",
+  "projectname": "%E5%8C%BB%E7%94%9F%E5%B0%8F%E7%A8%8B%E5%BA%8F"
+}

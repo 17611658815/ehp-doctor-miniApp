@@ -1,0 +1,28 @@
+<view class="login flex_e_c">
+	<view class="login-title flex_line_c ml30">
+		<view class="flex_c_m c333 f36 b">
+			登 录
+		</view>
+	</view>
+	<view class="c999 f28 mt20 ml30">
+		还没有账号，立即 <text class="color-primary">注册</text>
+	</view>
+	<view class="mt50">
+		<van-cell-group>
+			<van-field value="{{ formData.phone }}" center clearable placeholder="请输入手机号码" border="{{ true }}" use-button-slot
+				bind:input='onInputVal' data-key='phone' maxlength='11'>
+			</van-field>
+			<van-field value="{{ formData.password }}" type="{{isShowPassword ? 'number':'password'}}" center clearable
+				placeholder="请输入密码" wx:if='{{isPassword}}' right-icon="{{isShowPassword ? 'eye':'closed-eye'}}"
+				border="{{ true }}" bind:input='onInputVal' bind:click-icon='handleShowPassword' data-key='password'>
+			</van-field>
+			<van-field value="{{ formData.code }}" center clearable placeholder="请输入短信验证码" wx:else border="{{ true }}"
+				use-button-slot bind:input='onInputVal' data-key='code'>
+				<view slot="button" bind:tap="sendCode">
+					{{sms.message}}
+				</view>
+			</van-field>
+		</van-cell-group>
+		<button bind:tap="handleLogin" class="bg-color-primary cfff ml30 mr30 mt50">登 录</button>
+	</view>
+</view>

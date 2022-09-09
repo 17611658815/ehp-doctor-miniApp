@@ -1,0 +1,19 @@
+.van-button--primary {
+  font-size: 36rpx !important;
+  background-color: #1dbcc9 !important;
+  height: 80rpx !important;
+  border-width: 0px !important;
+}
+.van-button--info {
+  font-size: 36rpx !important;
+  background-color: transparent !important;
+  height: 80rpx !important;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #1dbcc9 !important;
+  color: #1dbcc9 !important;
+}
+.van-empty{height: 100%;}
+page .van-button--disabled{opacity: 1;}
+page .van-button{line-height: 88rpx;height: 88rpx;display:block;}
+page .van-button .van-button__text{font-size: 36rpx;}

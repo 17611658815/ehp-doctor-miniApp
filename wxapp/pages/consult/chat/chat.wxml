@@ -1,0 +1,138 @@
+<navbar isBack="{{isBack}}" home="{{!isBack}}" backgroundColor="{{backgroundColor}}" navTitle="{{navTitle}}"
+	pageNum="{{pageNum}}"></navbar>
+<view class='chating-wrapper' catchtap='chatingWrapperClick' bindtouchstart="touchStart" bindtouchmove="touchMove"
+	bindtouchend="touchEnd">
+	<view id='dobBox' wx:if="{{InquirerInfo.name}}" class="dob-box flex_lr bg-color-white"
+		style="z-index:9999;top:{{44+statusBarHeight}}px">
+		<view class="flex_m" hover-class="none" hover-stop-propagation="false">
+			<view class="doc-content ml10">
+				<view class="flex_m">
+					<view class="f28 c333 b">
+						{{InquirerInfo.name}}
+					</view>
+					<view class="f24 c666 ml15">
+						{{InquirerInfo.gender == 1 ?'男':InquirerInfo.gender == 0?'女':'未知' }}｜{{InquirerInfo.age}}｜
+						{{InquirerInfo.relationName}}
+					</view>
+				</view>
+				<view class="flex_m f24 c444 color-primary" wx:if='{{countdown > 0}}'>
+					<view class="flex_m">
+						<view class="f22 color-primary">问诊中:</view>
+						<view class="f22 color-primary" >
+							<van-count-down class="f22 color-primary" time="{{ countdown }}" />
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="timeBox" wx:if='{{countdown > 0}}'>
+			<view class="flex_l_m color-primary">
+				<view class="f26 color-danger">结束问诊</view>
+			</view>
+		</view>
+	</view>
+	<!-- 聊天模块 -->
+	<import src='../template/consult.wxml' />
+	<template is='consult'
+		data="{{messageArr,baseUrl,previewList,doctorId,isAgain,scrollIntoView,InquirerInfo,scrollHeight,scrollTop,patientRemarkInfo,static,userInfo}}"></template>
+	<!--底部输入框  -->
+<view id="chatBtn" class='chatinput-wrapper bg-color-white flex_m {{inputBottom==0 ? "envBottom":""}}'
+		style='bottom:{{inputBottom}}px' catchtap='stopEventPropagation'>
+		<view class="w100">
+			<view class='chatinput-content'>
+				<view class="chatinput-box flex_c_m ml20 mr10">
+					<image src='{{sendType == 0 ? "/static/images/voices.png" : "/static/images/input.png"}}'
+						class='chatinput-img' style="width:46rpx;height:46rpx" catchtap='switchSendType'></image>
+				</view>
+				<input wx:if="{{sendType == 0}}" adjust-position="{{false}}" value='{{inputValue}}' focus='{{focusFlag}}'
+					bindfocus='inputFocus' bindblur='inputBlur' bindinput="oninput" bindconfirm='inputSend'
+					bindkeyboardheightchange='onkeyboardheightchange' placeholder-class="c999" class='chatinput-input'
+					placeholder="请输入您想回复的内容" confirm-type='send'></input>
+				<button wx:if="{{sendType == 1}}"
+					class="c999 {{ isLongPress ? 'chatinput-voice-mask chatinput-voice-mask-hover' : 'chatinput-voice-mask' }}"
+					hover-class="none" catchtouchstart='longPressStart' catchtouchmove='pressMove' catchtouchend='longPressEnd'
+					catchtouchcancel="touchCanel">按住说话</button>
+				<view class="chatinput-box flex_c_m ml10 mr20">
+					<image src='/static/images/navtab.png' catchtap='handleShowNav'
+						class='chatinput-img' style="width:46rpx;height:46rpx"></image>
+				</view>
+			</view>
+			<view class="chatinput-nav flex mt20" wx:if="{{sendMessageNav}}">
+				<view class="flex_line_c_m">
+					<image src='/static/images/picture.png' catchtap='chooseImageToSend'
+						class='chatinput-img' mode="heightFix" style="width:46rpx;height:36rpx"></image>
+						<view class="f24 c999">
+							图片
+						</view>
+				</view>
+				<!-- <view class="flex_line_c_m">
+					<image src='/static/images/camera.png' catchtap='chooseImageToSend'
+						class='chatinput-img' mode="heightFix" style="width:46rpx;height:36rpx"></image>
+						<view class="f24 c999">
+							相机
+						</view>
+				</view> -->
+				<view bind:tap="handleNavigateTop" data-url="/pages/cases/add/index" class="flex_line_c_m">
+					<image src='/static/images/add.png'
+						class='chatinput-img' mode="heightFix" style="width:46rpx;height:36rpx"></image>
+						<view class="f24 c999">
+							病例
+						</view>
+				</view>
+				<view class="flex_line_c_m">
+					<image src='/static/images/message.png' catchtap='chooseImageToSend'
+						class='chatinput-img' mode="heightFix" style="width:46rpx;height:36rpx"></image>
+						<view class="f24 c999">
+							常用语
+						</view>
+				</view>
+				<view class="flex_line_c_m">
+					<image src='/static/images/prescription.png' catchtap='chooseImageToSend'
+						class='chatinput-img' mode="heightFix" style="width:46rpx;height:36rpx"></image>
+						<view class="f24 c999">
+							处方
+						</view>
+				</view>
+				<view class="flex_line_c_m">
+					<image src='/static/images/chineseMedicine.png' catchtap='chooseImageToSend'
+						class='chatinput-img' mode="heightFix" style="width:46rpx;height:36rpx"></image>
+						<view class="f24 c999">
+							中药处方
+						</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- <view id="chatBtn" class="chat-btn flex_c_m">
+		<view class="chat-btn-btn flex1 flex_c_m mt25 mb25" catchtap="handleConsult" data-name='{{InquirerInfo.name}}'
+			data-id="{{InquirerInfo.doctorId}}" data-templateId='{{templateId}}' data-type="1">
+			<view class="f28 color-primary">
+				图文
+			</view>
+			<view class="f28 color-danger b">
+				¥{{InquirerInfo.consultCost / 100}}
+			</view>
+			<view class="f28 color-primary">
+				/次
+			</view>
+		</view>
+		<view class="chat-btn-btn flex1 flex_c_m ml20 mt25 mb25" catchtap="handleConsult" data-name='{{InquirerInfo.name}}'
+			data-id="{{InquirerInfo.doctorId}}" data-type="2" data-templateId='{{templateId}}'>
+			<view class="f28 color-primary">
+				视频
+			</view>
+			<view class="f28 b color-danger">
+				¥{{InquirerInfo.videoCost/100}}
+			</view>
+			<view class="f28 color-primary">
+				/15分钟
+			</view>
+		</view>
+	</view> -->
+</view>
+<authorization id='authToast' bind:authSub='onAuthSub' bind:close='onClose'></authorization>
+<view class="showToast" hidden="{{toastDis}}">
+	<image src="/static/images/audio-icon.gif"></image>
+	<!-- <image src="/static/images/audio-icon.png"></image> -->
+	<text>{{isCanelAudio ? '松开手指,取消发送' : '手指上滑,取消发送'}}</text>
+</view>

@@ -1,0 +1,65 @@
+@import '../../app.wxss';
+.list .item{
+  border-radius: 8rpx;
+}
+.list .item .info .photo{
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 50%;
+}
+.list .item .info .photo>image{
+  border-radius: 50%;
+}
+.list .item .text{
+  margin-top: 10rpx;
+  line-height: 34rpx;
+  border-radius: 8rpx;
+  font-size:24rpx;
+
+}
+.list .item .text view{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break:break-all;
+}
+.list .item .btn{
+  margin-top: 32rpx;
+  padding-bottom: 0rpx;
+}
+.list .item .btn>view{
+  width: 164rpx;
+  height: 56rpx;
+  box-sizing: border-box;
+  text-align: center;
+  border: 2rpx solid #dddddd;
+  font-size: 26rpx;
+  border-radius: var(--btnRadius);
+	margin-right: 20rpx;
+}
+.name{
+  line-height: 48rpx;
+}
+.name button{
+  display: block;
+  float: right;
+  width: 120rpx;
+  height: 48rpx;
+  text-align: center;
+  line-height: 48rpx;
+  background: var(--themeColor);
+  color: #fff;
+  font-weight: normal;
+  font-size: 24rpx;
+  border-radius: 8rpx;
+  /* padding-left: 0 12rpx; */
+  padding: 0;
+}
+.noData image{
+  display: block;
+  width: 380rpx;
+  height: 316rpx;
+  margin: 0 auto;
+  margin-top: 50rpx;
+}

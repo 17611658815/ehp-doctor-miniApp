@@ -1,0 +1,74 @@
+/* component/medicalHistory/medicalHistory.wxss */
+@import '../../app.wxss';
+.radio{
+  float: right;
+}
+.historyText{
+  width: 100%;
+  padding: 22rpx 20rpx;
+  box-sizing: border-box;
+  border: 1rpx solid #DDDDDD;
+  margin-top: 32rpx;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  color: #333333;
+  line-height: 44rpx;
+  min-height: 88rpx;
+}
+.textHidden{
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+}
+.mask{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.29);
+  z-index: 1000;
+}
+.mask .content{
+  background: #fff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-radius: 10pt  10pt  0pt  0pt   ;
+}
+.close{
+  position: absolute;
+  width: 44rpx;height: 44rpx;
+  right: 32rpx;
+  top: 32rpx;
+}
+.content textarea{
+  width: 100%;
+  height: 300rpx;
+  border: 2rpx solid #EEEEEE;
+  box-sizing: border-box;
+  padding: 20rpx;border-radius: 8rpx;
+  color: #333;
+  font-size: 32rpx;
+}
+.drug text{
+  height: 56rpx;
+  box-sizing: border-box;
+  border: 2rpx solid  #EEEEEE;
+  border-radius: 4rpx;
+  display: inline-block;
+  font-size: 28rpx;
+  color: #999999;
+  padding: 0 16rpx;
+  line-height: 52rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+}
+.drug text.cur{
+  background: var(--themeColor);
+  border-color: var(--themeColor);
+  color: #fff;
+}
+.confir{
+  padding-top: 40rpx;
+  border-top: none;
+}

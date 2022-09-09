@@ -1,0 +1,3 @@
+<view class='main'>
+<image class="tart_logo" mode="aspectFit" src="../../static/logo/img_start_page.png" />
+</view>

@@ -1,0 +1,13 @@
+{
+  "desc": "小程序及其页面是否允许被微信索引",
+  "rules": [
+    {
+      "action": "disallow",
+      "page": "pages/ucenter/index/index"
+    },
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
+}

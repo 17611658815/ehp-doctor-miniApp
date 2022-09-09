@@ -1,0 +1,56 @@
+<view class="" hover-class="none" hover-stop-propagation="false">
+	<view class="list pb1" wx:if="{{list.length>0}}">
+		<view wx:for="{{list}}" wx:key="index">
+			<navigator open-type='navigate'
+				url="/pages/famousDoctorDetail/famousDoctorDetail?type={{type}}&doctorId={{item.doctorId}}" hover-class="none"
+				class="item bg-color-white m20 p20">
+				<view class="info flex">
+					{{item.result.photo}}
+					<view class="photo">
+						<image src="{{item.photo ? item.photo : '/static/images/doctor_icon.png'}}" mode="aspectFill"
+							class="imgBlock"></image>
+					</view>
+					<view class="ml20 flex1">
+						<view class="name f32 b c333">{{item.name}}<text class="ml20 n c444">{{item.title}}</text>
+						<!-- <button data-id='{{item.doctorId}}' catchtap="counselHistory">咨询记录</button> -->
+						</view>
+						<view class='lh40 f28 c666 mt5'>{{item.hospital}}<text class="c666 f28 ml20">{{item.department}}</text>
+						</view>
+						<view class="lh36 c999 f26 mt10">好评率：<text
+								class="color-primary mr30 b">{{item.praiseRate}}</text>服务患者数：<text
+								class="color-primary b">{{item.serviceNum}}</text></view>
+						<view class="text c666">
+							<view>擅长：{{item.expertise}}</view>
+						</view>
+						<view class="btn flex_m">
+							<view class="flex_c_m" catchtap="handleConsult" data-name='{{item.name}}' data-id="{{item.doctorId}}"
+								data-templateId='{{templateId}}' data-type="1" wx:if='{{type == 2 || type == 3}}'>
+								<view>
+									图文
+								</view>
+								<view class="color-danger ml10 b">
+									¥{{item.consultCost/100}}
+								</view>
+							</view>
+							<view class="flex_c_m" catchtap="handleConsult" data-name='{{item.name}}' data-id="{{item.doctorId}}"
+								data-type="2" data-templateId='{{templateId}}' data-name="{{item.name}}" wx:if='{{type == 1 || type == 3}}'>
+								<view>
+									视频
+								</view>
+								<view class="color-danger ml10 b">
+									¥{{item.videoCost/100}}
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</navigator>
+		</view>
+	</view>
+	<!-- 无数据 -->
+	<view class="noData" style="margin-top: 120rpx;" wx:else>
+		<image src="{{imgObject.img_blank_doctor}}"></image>
+		<view class="tc c666 f28 pt40 pb40">暂无医生</view>
+	</view>
+</view>
+	<authorization id='authToast' bind:authSub='onAuthSub' bind:close='onClose'></authorization>

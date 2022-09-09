@@ -1,0 +1,8 @@
+		<van-field model:value="{{ areaValue }}" bindtap="showAddresPicker" readonly is-link='{{true}}'
+			input-align='{{inputAlign}}' label="{{label}}" placeholder="{{placeholder}}" />
+		<!-- 选择城市 -->
+		<van-popup show="{{showAddresPicker}}" bind:close='showAddresPicker' close-on-click-overlay='{{true}}'
+			round='{{true}}' position="bottom">
+			<van-picker show-toolbar columns="{{ columns }}" title='选择地址' value-key="text" bind:cancel='bindPickerCancel'
+				bind:confirm='bindPickerConfim' bind:change="bindPickerChange" />
+		</van-popup>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+		"uploadImg": "/component/uploadImg/index"
+	},
+	"navigationStyle":"custom"
+}

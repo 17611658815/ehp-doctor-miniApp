@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "navbar":"/component/nav/nav",
+		"vant-swipe-cell": "/lib/vant-weapp/swipe-cell/index",
+		"vant-cell-group": "/lib/vant-weapp/cell-group/index"
+  },
+  "navigationBarTextStyle": "white",
+  "navigationStyle":"custom",
+  "backgroundColor": "#F8F8F8"
+}

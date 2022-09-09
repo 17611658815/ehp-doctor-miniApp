@@ -1,0 +1,17 @@
+
+/**
+ * index
+ */
+ @import '../../app.wxss';
+ .overlay-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.overlay-block {
+  width: 630rpx;
+  border-radius: 20rpx;
+  background: #ffffff;
+  z-index: 99999;
+}

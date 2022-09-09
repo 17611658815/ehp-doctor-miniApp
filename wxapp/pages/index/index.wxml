@@ -1,0 +1,111 @@
+<view class="header w100 bg-color-primary">
+	<view class="p20 flex_lr_m" style="padding-top:{{statusBarHeight+logoHeight}}px">
+		<view class="flex_m">
+			<view class="docAvatar flex_m ">
+				<image class="container-radius" src="{{doctorInfo.headerImageUrl}}" mode="aspectFill" style="width:90rpx;height:90rpx" />
+			</view>
+			<view class="ml15">
+				<view>
+					<text class="f32 cfff b">{{doctorInfo.name}}</text><text class="f24 cfff ml15">{{doctorInfo.title}}</text>
+				</view>
+				<view class="flex_c_m preBtn f20 cfff mt10">
+					预览主页 <text class="right-icon"></text>
+				</view>
+			</view>
+		</view>
+		<view>
+			<image src="../../static/images/ic_code.png" mode="aspectFill" style="width:44rpx;height:44rpx" />
+			<image class="ml40" src="../../static/images/ic_message_white.png" mode="aspectFill"
+				style="width:44rpx;height:44rpx" />
+		</view>
+	</view>
+</view>
+
+<view class="container bg-color-gray-light">
+	<view class="bg-color-white container-radius flex p20 m20">
+		<view class="flex_line_c flex1">
+			<view class="f36 c333 b">
+				{{doctorInfo.personalPatientNum}}
+			</view>
+			<view class="f20 c999">
+				患者人数
+			</view>
+		</view>
+		<view class="flex_line_c flex1">
+			<view class="f36 c333 b">
+				{{doctorInfo.requireRecomNum}}
+			</view>
+			<view class="f20 c999">
+				累计处方次数
+			</view>
+		</view>
+		<view class="flex_line_c flex1">
+			<view class="f36 c333 b">
+				{{doctorInfo.consultNum}}
+			</view>
+			<view class="f20 c999">
+				累计问诊次数
+			</view>
+		</view>
+	</view>
+
+	<view class="container-radius flex ml20 mr20">
+		<view class="flex_lr_m flex1 bg-color-white p20">
+			<image style="width:68rpx;height:68rpx" src="../../static/images/ic_continuation.png" mode="aspectFill" />
+			<view class="c333 f28 b">
+				药房续方
+			</view>
+			<text class="right-icon"></text>
+		</view>
+		<view class="flex_lr_m flex1 ml20 bg-color-white p20">
+			<image style="width:68rpx;height:68rpx" src="../../static/images/ic_reception.png" mode="aspectFill" />
+			<view class="c333 f28 b">
+				等待接诊
+			</view>
+			<text class="right-icon"></text>
+		</view>
+	</view>
+
+	<view class="docMessage flex_lr_m m20 p20">
+		<view class="flex_c_m f24 c333">
+			<image style="width:40rpx;height:40rpx" src="../../static/images/ic_notice_01.png" mode="aspectFill" />
+			<view class="ell ell_1">
+				<rich-text nodes='{{doctorInfo.lateTitle.title}}'></rich-text> 
+			</view>
+		</view>
+		<view class="right-icon c999"></view>
+	</view>
+
+	<view class="p30 c333 b f36">咨询列表</view>
+	<view class="consult-list">
+		<view class="consult-list-item bb1" wx:for="{{list}}" wx:key="index">
+			<vant-swipe-cell id="swipe-cell" right-width="{{ 195 }}" async-close data-item="{{index}}"
+				id='for-close-{{index}}'>
+				<view class="left-content p30" data-index="{{index}}" data-patientId='{{item.from.id}}'  data-sessionId='{{item.session.sessionId}}' catchtap='handleTap'>
+					<view class="flex_m">
+						<view class="flex_m">
+							<image src="../../static/images/doctor_icon.png" mode="aspectFill"
+								style="width:90rpx;height:90rpx;border-radius: 50%;" />
+						</view>
+						<view class="ml15">
+							<view>
+								<text class="f32 c333 b">{{index}}</text>
+							</view>
+							<view class="f28 c999 mt10">
+								{{item.content}}
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="flex_c_m" slot="right">
+					<view catchtap='handleTop' data-index="{{index}}" class="zhiding f28 cfff flex_c_m">置顶</view>
+					<view catchtap='handleMute' data-index="{{index}}" class="miandarao f28 cfff flex_c_m">免打扰
+					</view>
+					<view catchtap='handleDel' data-index="{{index}}" class="shanchu f28 cfff flex_c_m">删除</view>
+				</view>
+			</vant-swipe-cell>
+		</view>
+	</view>
+	<!-- <van-empty description="描述文字">
+	</van-empty> -->
+</view>

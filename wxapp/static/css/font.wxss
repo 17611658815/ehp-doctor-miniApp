@@ -1,0 +1,69 @@
+.f0 {
+  font-size: 0;
+}
+.f10 {
+  font-size: 10rpx;
+}
+.f12 {
+  font-size: 12rpx;
+}
+.f13 {
+  font-size: 13rpx;
+}
+.f14 {
+  font-size: 14rpx;
+}
+.f16 {
+  font-size: 16rpx;
+}
+.f17 {
+  font-size: 17rpx;
+}
+.f18 {
+  font-size: 18rpx;
+}
+.f20 {
+  font-size: 20rpx;
+}
+.f22 {
+  font-size: 22rpx;
+}
+.f24 {
+  font-size: 24rpx;
+}
+.f28 {
+  font-size: 28rpx;
+}
+.f26 {
+  font-size: 26rpx;
+}
+.f30 {
+  font-size: 30rpx;
+}
+.f32 {
+  font-size: 32rpx;
+}
+.f34 {
+  font-size: 34rpx;
+}
+.f36 {
+  font-size: 36rpx;
+}
+.f38 {
+  font-size: 38rpx;
+}
+.f40 {
+  font-size: 40rpx;
+}
+.f42 {
+  font-size: 42rpx;
+}
+.f44 {
+  font-size: 44rpx;
+}
+.f50 {
+  font-size: 50rpx;
+}
+.f56 {
+  font-size: 56rpx;
+}

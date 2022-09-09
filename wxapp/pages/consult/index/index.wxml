@@ -1,0 +1,38 @@
+<!--pages/consult/index/index.wxml-->
+<import src='../template/videoConsult.wxml' />
+<view class="container">
+  <view class="tab flex">
+     <view class="flex1 flex_c_m">
+        <text class="{{type==1?'cur':''}}" bindtap="tabClick" data-id="1">图文咨询</text>
+     </view>
+     <view class="flex1 flex_c_m">
+        <text class="{{type==2?'cur':''}}"  bindtap="tabClick" data-id="2">视频咨询</text>
+     </view>
+  </view>
+  <view class="list pt85" wx:if="{{type==1}}">
+    <view class="pl30 pr30 bg-color-white" wx:if='{{list.length>0}}' >
+     <view class="item pt30 pb30  clearfix bb1" wx:for="{{list}}" wx:key="{{index}}" data-id='{{item.doctorId}}' bindtap='getMsgDetail'>
+        <view class="photo fl">
+          <image mode="aspectFill" src="{{item.photo ? item.photo : '/static/images/doctor_icon.png'}}" class="imgBlock"></image>
+          <text wx:if='{{messageRecord[item.doctorId]}}'>{{messageRecord[item.doctorId]}}</text>
+        </view>
+        <view>
+          <view class="title">
+            <text class="c333 b f32">{{item.doctorName}}</text> 
+            <text class="c666 f26 pl10">{{item.title}}</text>
+            <image src="{{icon}}" wx:if="{{item.aliveMessage}}"></image>
+            <text class="c999 f24 fr">{{item.consultTime}}</text>
+          </view>
+          <view class="content f28 c999 lh40">{{item.messageContent}}</view>
+        </view>
+     </view>
+    </view>
+		 <view class="flex_line_c no_msg_box" wx:else>
+			<image class="no_msg" src="{{static.nomes}}"></image>
+			<view class="f28 c666">暂无问诊</view>
+		</view>
+  </view>
+  <view class="pt85 bg-color-white" wx:if="{{type==2}}">
+    <template is='videoConsult' data="{{videoConsult,static}}"></template>
+  </view>
+</view>

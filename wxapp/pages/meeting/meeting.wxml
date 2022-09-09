@@ -1,0 +1,4 @@
+<view class="page">
+  <image mode="aspectFit" class="logo" src="{{static.login_logo}}"></image>
+  <view class="title">{{company}}互联网医院</view>
+</view>

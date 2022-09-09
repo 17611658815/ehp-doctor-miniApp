@@ -1,0 +1,33 @@
+<navbar isBack="true" isWhite='true' titleColor='#fff' backgroundColor="{{backgroundColor}}" navTitle="{{navTitle}}">
+</navbar>
+<view class="container" bindtouchmove="touchMove">
+	<view class="w100 bg-color-white p30">
+		<view class="f32 b c333">基本信息</view>
+		<view class="pt20 c666 f28">姓名：{{info.patientName}}</view>
+		<view class="pt20 c666 f28">性别：{{info.patientGender==0?'女':'男'}}</view>
+		<view class="pt20 c666 f28">年龄：{{info.patientAgeStr}}</view>
+	</view>
+	<view class="line"></view>
+	<view class="w100 bg-color-white p30">
+		<view class="f32 b c333">线下诊断</view>
+		<view class="pt20 c666 f28">{{info.offlineDiagnosis}}</view>
+	</view>
+	<block wx:if="{{info.offlineDiagnosisImgs.length>0}}">
+		<view class="line"></view>
+		<view class="w100 bg-color-white p30">
+			<view class="f32 b c333">图片资料</view>
+			<view class="picList clearfix">
+				<view class="item" wx:for="{{info.offlineDiagnosisImgs}}" data-index="{{index}}" bindtap="previewImg">
+					<image mode="aspectFill" src="{{item}}"></image>
+				</view>
+			</view>
+		</view>
+	</block>
+	<view class="line"></view>
+	<view class="w100 bg-color-white p30">
+		<view class="f32 b c333">过敏史</view>
+		<view class="pt20 c666 f28 pb30 bb1">{{info.allergy!='' && info.allergy!==null ? info.allergy:'无'}}</view>
+		<view class="f32 b c333 pt30">既往史</view>
+		<view class="pt20 c666 f28">{{info.pastHistory!='' && info.pastHistory!==null ?info.pastHistory:'无'}}</view>
+	</view>
+</view>

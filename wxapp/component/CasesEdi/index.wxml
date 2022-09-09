@@ -1,0 +1,3 @@
+<van-popup show="{{show}}" bind:close='showAddresPicker' close-on-click-overlay='{{true}}' round='{{true}}' position="bottom">
+6666
+</van-popup>

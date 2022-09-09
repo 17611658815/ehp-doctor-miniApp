@@ -1,0 +1,21 @@
+<van-overlay show="{{ show }}" bind:click="hideHisToast">
+	<view class="overlay-wrapper">
+		<view class="overlay-block">
+			<view class="p40 f32 c333">就诊人无线下就诊记录，暂不支持线上
+				复诊，请到天津生命汇综合门诊就诊</view>
+			<view class="bg-color-gray-light p20">
+				<view class='f28 c999'>
+					地址：天津经济技术开发区滨海-中关村科技
+					园融汇商务园四区7号楼1门
+				</view>
+				<view class="mt20 f28">
+					<span class="c999">电话：</span>
+					<span style="color:#0DB9FF" bindtap='call'>010-56831840</span>
+				</view>
+			</view>
+			<view class="f32 p40 flex_c_m themeColor" bindtap='hideHisToast'>
+				确定
+			</view>
+		</view>
+	</view>
+</van-overlay>

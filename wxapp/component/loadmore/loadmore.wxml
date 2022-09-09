@@ -1,0 +1,3 @@
+<view class='loadingMore'>
+	<view class='loading-text'>正在加载...</view>
+</view>

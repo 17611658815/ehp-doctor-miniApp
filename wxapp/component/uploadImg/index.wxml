@@ -1,0 +1,12 @@
+<!--component/uploadImg/index.wxml-->
+<view class='picList clearfix'>
+  <view class='item' wx:for="{{imgList}}" wx:for-index="key">
+    <image class="thumb" data-current="{{item}}" mode="aspectFill" data-index="{{key}}" bindtap='previewImg' src="{{item}}" />
+    <view class='delPic' bindtap='remImg' data-id="{{key}}">
+      <image src='{{ic_upload_delect}}' mode="aspectFill" />
+    </view>
+  </view>
+  <view class='upload item' bindtap="imgUpload">
+    <image src='{{ic_upload_add}}' mode="aspectFill"></image>
+  </view>
+</view>

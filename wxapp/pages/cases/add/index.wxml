@@ -1,0 +1,170 @@
+<navbar isBack="{{true}}" backgroundColor='#fff' navTitle="添加病例"></navbar>
+<view class="container bg-color-gray-light pb160">
+	<view class="f36 c333 mt10 p30 bg-color-white bt10 tc">
+		奈特瑞互联网医院电子病历
+	</view>
+	<view class="bg-color-white mt5 p30">
+		<view class="flex_lr_m">
+			<text class="f28 c333 flex1">姓名：马可波罗</text>
+			<text class="f28 c333 flex1">性别：女</text>
+			<text class="f28 c333 flex1">年龄：25岁</text>
+		</view>
+		<view class="flex_lr_m mt20">
+			<text class="f28 c333 flex1">科室：康复科</text>
+			<text class="f28 c333">时间：2021-09-01</text>
+			<text class="f28 c333 flex1"></text>
+		</view>
+	</view>
+	<view class="bg-color-white mt20 p30 bb1">
+		<view class="flex_m f24 c666">
+			主诉<text class="rd flex_m">*</text>
+		</view>
+		<view class="flex_lr_m mt20">
+			<view class="f28 c333 flex1">
+				腹胀伴恶心呕吐3月余，加重2周
+			</view>
+			<view class="right-icon c999"></view>
+		</view>
+	</view>
+	<view class="bg-color-white p30 bb1">
+		<view class="flex_m f24 c666">
+			现病史<text class="rd flex_m">*</text>
+		</view>
+		<view class="flex_lr_m mt20">
+			<view class="f28 c333 flex1">
+				慢性肾炎，肾病综合症
+			</view>
+			<view class="right-icon c999"></view>
+		</view>
+	</view>
+	<view class="bg-color-white p30 bb1">
+		<view class="flex_m f24 c666">
+			既往史<text class="rd flex_m">*</text>
+		</view>
+		<view class="flex_lr_m mt20">
+			<view class="f28 c333 flex1">
+				糖尿病
+			</view>
+			<view class="right-icon c999"></view>
+		</view>
+	</view>
+	<view class="bg-color-white p30 bb1">
+		<view class="flex_m f24 c666">
+			过敏史<text class="rd flex_m">*</text>
+		</view>
+		<view class="flex_lr_m mt20">
+			<view class="f28 c333 flex1">
+				磺胺过敏，青霉素过敏
+			</view>
+			<view class="right-icon c999"></view>
+		</view>
+	</view>
+	<view class="bg-color-white p30 bb1">
+		<view class="flex_m f24 c666">
+			家庭史<text class="rd flex_m">*</text>
+		</view>
+		<view class="flex_lr_m mt20">
+			<view class="f28 c333 flex1">
+				父亲有高血压病史10余年，无兄弟姐妹，否认家族中
+				有类似患者
+			</view>
+			<view class="right-icon c999"></view>
+		</view>
+	</view>
+	<view class="bg-color-white p30 bb1">
+		<view class="flex_m f24 c666">
+			月经史
+		</view>
+		<view class="flex_lr_m mt20">
+			<view class="f28 c333 flex1">
+				<view>
+					月经情况：已初潮
+				</view>
+				<view>
+					初潮年龄：无
+				</view>
+				<view>
+					月经周期：无
+				</view>
+				<view>
+					行经天数：无
+				</view>
+				<view>
+					是否痛经：是
+				</view>
+				<view>
+					小腹疼痛，肚子坠胀
+				</view>
+			</view>
+			<view class="right-icon c999"></view>
+		</view>
+	</view>
+	<view class="bg-color-white p30 bb1">
+		<view class="flex_m f24 c666">
+			检查指标
+		</view>
+		<view class="flex_lr_m mt20">
+			<view class="f28 c333 flex1">
+				<view>
+					体温：36.5度
+				</view>
+				<view>
+					体重：47kg
+				</view>
+				<view>
+					心率：98bpm
+				</view>
+				<view>
+					收缩压：无
+				</view>
+				<view>
+					舒张压：无
+				</view>
+				<view>
+					阳性体征：肺部可闻及干啰音和湿啰音肺脓肿出现杵 状指
+				</view>
+				<view>
+					必要的阴性体征：无
+				</view>
+				<view>
+					更多检查结果：无
+				</view>
+			</view>
+			<view class="right-icon c999"></view>
+		</view>
+	</view>
+	<view class="bg-color-white p30 bb1">
+		<view class="flex_m f24 c666">
+			诊断<text class="rd flex_m">*</text>
+		</view>
+		<view class="flex_lr_m mt20">
+			<view class="f28 c333 flex1">
+				阿诺德-基里亚综合症
+			</view>
+			<view class="right-icon c999"></view>
+		</view>
+	</view>
+	<view class="bg-color-white p30 bb1">
+		<view class="flex_m f24 c666">
+			治疗意见<text class="rd flex_m">*</text>
+		</view>
+		<view class="flex_lr_m mt20">
+			<view class="f28 c333 flex1">
+				<textarea placeholder="请输入治疗意见..." value="" bind:input="onAreaVal" placeholder-style="c999"></textarea>
+				<view class="drug pt30">
+					<text wx:for="{{tagList}}" wx:key="index" data-value="{{item}}" bindtap="onTagTap">{{item}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="bg-color-white">
+			<uploadImg imgList="{{imgList}}" size="9" bind:onImgUpload="onImgUpload"></uploadImg>
+		</view>
+	</view>
+</view>
+<view class="fixed b0 l0 w100 bg-color-white">
+	<view class="confir pl30 pr30">
+		<button>
+			下一步
+		</button>
+	</view>
+</view>

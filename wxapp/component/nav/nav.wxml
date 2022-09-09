@@ -1,0 +1,24 @@
+<view class="nav-box" id='nav-box'>
+	<view wx:if="{{ seat }}" class="seat-box" style="height:{{ 44 + statusBarHeight}}px;"></view>
+	<view class='nav-wrap' style="background-color:{{backgroundColor}};">
+		<view style="height:{{statusBarHeight}}px;"></view>
+		<view class='content'>
+			<view class="title" style="line-height:44px;color:{{titleColor}};">{{navTitle}}</view>
+			<view wx:if="{{isBack}}" class="capsule-box {{isWhite? 'isWhite':'isblack'}}"
+				style='height:{{capsule.height}}px;position: absolute; top:{{capsule.top-statusBarHeight}}px; left:{{left}}px;'>
+				<image class='back' bindtap='back'
+					src="{{isWhite ? '/static/images/ic_nav_back_white.png':'/static/images/ic_nav_back_blac.png'}}"
+					mode="aspectFill" lazy-load="false" data-num="{{pageNum}}" binderror="" bindload="">
+
+				</image>
+				<view class="{{isWhite? 'lineWhite':'lineblack'}}" hover-class="none" hover-stop-propagation="false">
+
+				</view>
+				<image class='home' bindtap="toIndex"
+					src="{{isWhite ? '/static/images/ic_nav_home_white.png':'/static/images/ic_bacnk_home_black.png'}}"
+					mode="aspectFill" lazy-load="false" binderror="" bindload="">
+				</image>
+			</view>
+		</view>
+	</view>
+</view>

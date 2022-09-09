@@ -1,0 +1,4 @@
+/*加载更多*/
+.loadingMore{text-align: center;padding:10rpx 0;}
+.loading-img{width: 54rpx;height: 54rpx;}
+.loading-text{color: #666;font-size: 28rpx;}

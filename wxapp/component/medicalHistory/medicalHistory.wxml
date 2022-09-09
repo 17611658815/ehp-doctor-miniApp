@@ -1,0 +1,74 @@
+<!--component/medicalHistory/medicalHistory.wxml-->
+<view>
+  <view class="bg-color-white p30 mt20">
+    <view class="clearfix" bind:tap="onLike">
+      <text class="f32 b">过敏史</text>
+      <radio-group class="radio" bindchange="radioChange" data-type="1">
+          <view class="dib ml30 chooseItem" >
+            <radio value="1" checked="{{!allergy.checked}}">
+              <text class="f32 ml10">无</text>
+            </radio>
+          </view>
+          <view class="dib ml30 chooseItem" >
+            <radio value="2" checked="{{allergy.checked}}">
+              <text class="f32 ml10">有</text>
+            </radio>
+          </view>
+      </radio-group>
+    </view>
+    <view class="historyText {{isDetail?'':'textHidden'}}" bindtap="addcontent" data-id="1" wx:if="{{allergy.checked}}">
+      {{allergy.content}}
+    </view>
+  </view>
+  <view class="bg-color-white p30 mt20">
+    <view class="clearfix">
+      <text class="f32  b">既往史</text>
+      <radio-group class="radio"  bindchange="radioChange" data-type="2">
+          <view class="dib ml30 chooseItem" >
+            <radio value="1" checked="{{!always.checked}}">
+              <text class="f32 ml10">无</text>
+            </radio>
+          </view>
+          <view class="dib ml30 chooseItem" >
+            <radio value="2" checked="{{always.checked}}">
+              <text class="f32 ml10">有</text>
+            </radio>
+          </view>
+      </radio-group>
+    </view>
+    <view class="historyText {{isDetail?'':'textHidden'}}" bindtap="addcontent" data-id="2" wx:if="{{always.checked}}">
+      {{always.content}}
+    </view>
+  </view>
+  <van-popup show="{{showPicker}}" bind:close='close' close-on-click-overlay='{{true}}' round='{{true}}' position="bottom">
+     <view class="content pl30 pr30" catchtap="return">
+       <view class="close" bindtap="close">
+          <image src="{{imgObject.close}}" class="imgBlock"></image>
+       </view>
+       <view class="w100 tc pt40 pb40 c333 f32">
+         <block wx:if="{{type==1}}">过敏史</block>
+         <block wx:else>既往史</block>
+       </view>
+       <textarea name="" id="" value="{{textValue}}" placeholder-class="cB4B4B4"  placeholder="请输入您的{{type==1?'过敏史':'既往史'}}，不少于1个字" maxlength="1000" bindinput="textContFun"></textarea>
+       <view class="clearfix pt15 f28 pb40">
+         <view class="fl c333" bindtap="clearValue">清空</view> 
+         <view class="fr cB4B4B4">{{textValue.length}}/1000</view>
+       </view>
+       <view class="pb30 f32 c333 b">
+         <block wx:if="{{type==1}}">药物过敏</block>
+         <block wx:else>既往疾病</block>
+        </view>
+       <view class="drug">
+         <block wx:if="{{type==1}}">
+          <text wx:for="{{ywgm}}" wx:key="index" class="{{index==id?'cur':''}}" bindtap="tagChoose" data-value="{{item}}">{{item}}</text>
+         </block>
+         <block wx:else>
+          <text wx:for="{{jwjb}}" wx:key="index" class="{{index==id?'cur':''}}" bindtap="tagChoose" data-value="{{item}}">{{item}}</text>
+         </block>   
+       </view>
+       <view class="confir" >
+         <button bindtap="confirFun">确定</button>
+       </view>
+     </view>
+  </van-popup>
+</view>

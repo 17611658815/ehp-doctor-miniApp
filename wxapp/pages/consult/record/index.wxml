@@ -1,0 +1,28 @@
+<import src='../template/consult.wxml' />
+<import src='../template/videoConsult.wxml' />
+<navbar isBack="{{isBack}}"  backgroundColor="{{backgroundColor}}" navTitle="{{navTitle}}"></navbar>
+<view class="container {{currentTab==1?'bg-color-white':''}}" >
+	<view id="tabber" class="tabber flex bg-color-white"  style="z-index:9999;top:{{44+statusBarHeight}}px" >
+		<view bindtap='switchTab' data-current='0'  class="flex1 tabber-item flex_c_m f28 {{currentTab == 0 ? 'c389AFF':'c666'}}">
+			图文问诊记录
+			<text class="active" wx:if='{{currentTab==0}}' selectable="false" space="false" decode="false">
+			</text>
+		</view>
+		<view bindtap='switchTab' data-current='1'  class="flex1 tabber-item flex_c_m f28 {{currentTab == 1 ? 'c389AFF':'c666'}}">
+			视频问诊记录
+			<text class="active" selectable="false" wx:if='{{currentTab==1}}' space="false" decode="false">
+			</text>
+		</view>
+	</view>
+	<view class="chat-container" hover-class="none" hover-stop-propagation="false" wx:if='{{currentTab == 0}}' >
+		<template is='consult'  data="{{messageArr,baseUrl,previewList,doctorId,isAgain,scrollIntoView,scrollHeight,scrollTop,avatar,static}}" ></template>
+	</view>
+	<view id="fixedButton" hover-class="none" class="chat-container" style="top:{{statusBarHeight-10}}px" hover-stop-propagation="false" wx:if='{{currentTab == 1}}'>
+	  <scroll-view  class="record-wrapper" enable-back-to-top='true' bindscrolltolower='lower' scroll-y  style="bottom: {{mbottom}}rpx;top:{{scrollTop}}">
+				<template is='videoConsult' data="{{videoConsult,static}}" ></template>
+		</scroll-view>
+		<view class="fixed b0 l0 w100 bg-color-white pl30 pr30 confir" wx:if="{{videoConsult.length>0}}">
+			<button bindtap="againConsulVideo">再次咨询</button>
+		</view>
+	</view>
+</view>

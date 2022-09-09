@@ -1,0 +1,36 @@
+<template name='videoConsult'>
+  <view class="container">
+    <view class="list pl30 pr30" wx:if="{{videoConsult.length>0}}">
+      <view class="bb1 item  pt30 pb30  clearfix bb1" wx:for="{{videoConsult}}" bindtap='goMeeting'
+        data-roomid='{{item.roomId}}' data-videoConsultId='{{item.videoConsultId}}'
+        data-videoConsultStatus='{{item.videoConsultStatus}}'>
+        <view class="photo fl">
+          <image mode="aspectFill" src="{{item.photo ? item.photo : '/static/images/doctor_icon.png'}}"
+            class="imgBlock"></image>
+        </view>
+        <view>
+          <view class="title ">
+            <text class="c333 b f32">{{item.name}}</text>
+            <text class="c666 f26 pl10">{{item.title}}</text>
+            <text class="c999 f24 fr">{{item.consultTime}}</text>
+          </view>
+          <view class="content f28 c999 lh40">
+            {{item.talkTime}}
+            <view class="tag tag1" wx:if="{{item.videoConsultStatus==1}}">待接诊</view>
+            <view class="tag tag3" wx:if="{{item.videoConsultStatus==2}}">进行中</view>
+            <view class="tag tag4" wx:if="{{item.videoConsultStatus==3}}">中断</view>
+            <view class="tag tag2" wx:if="{{item.videoConsultStatus==4}}">已取消</view>
+            <view class="tag tag3" wx:if="{{item.videoConsultStatus==5}}">已完成</view>
+            <view class="tag tag2" wx:if="{{item.videoConsultStatus==6}}">未付款</view>
+          </view>
+        </view>
+        <view class="cause cl" wx:if="{{item.refusalReason!=null}}">原因：{{item.refusalReason}}
+        </view>
+      </view>
+    </view>
+    <view class="flex_line_c no_msg_box" style="top: 150rpx" wx:else>
+      <image class="no_msg" src="{{static.nomes}}"></image>
+      <view class="f28 c666">暂无问诊</view>
+    </view>
+  </view>
+</template>
