@@ -261,6 +261,10 @@ function setConnectParams(app, params) {
   app.globalData.connectParams.msgTopicName = app.globalData.connectParams.msgTopicName
   wx.setStorageSync(ConnectParamsKey, app.globalData.connectParams)
 }
+function setGlobalConfig(app, params) {
+  app.globalData.globalConfig = params
+  wx.setStorageSync('globalConfig', params)
+}
 
 function showModal(object) {
   object.confirmColor = THEMECOLOR
@@ -294,6 +298,7 @@ module.exports = {
   getPlatform,
   getConnectParams,
   setConnectParams,
+	setGlobalConfig,
   showModal,
   showLoading,
   hideLoading,

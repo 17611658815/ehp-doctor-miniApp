@@ -31,6 +31,20 @@
           "query": "id=290",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "月经史",
+          "pathName": "pages/cases/menstrual/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "检查指标",
+          "pathName": "pages/cases/examine/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

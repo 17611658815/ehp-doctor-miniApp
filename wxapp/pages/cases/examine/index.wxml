@@ -1,0 +1,73 @@
+<navbar isBack="{{true}}" backgroundColor='#fff' navTitle="检查指标"></navbar>
+<view class="container bg-color-gray-light pb160">
+	<van-cell title="体温（度）">
+		<van-stepper value="{{ examine.temperature }}" data-key='temperature' min='{{30}}' max='{{45}}' step='0.1'
+			decimal-length='1' input-width="40px" button-size="32px" bind:change="onStepperChange" />
+	</van-cell>
+	<van-cell title="体重（kg）">
+		<van-stepper value="{{ examine.weight }}" data-key='weight' min='{{2}}' max='{{299}}' step='0.1' decimal-length='1'
+			input-width="40px" button-size="32px" bind:change="onStepperChange" />
+	</van-cell>
+	<van-cell title="心率（bpm）">
+		<van-stepper value="{{ examine.heartRete }}" data-key='heartRete' min='{{20}}' max='{{249}}' integer
+			input-width="40px" button-size="32px" bind:change="onStepperChange" />
+	</van-cell>
+	<van-cell title="收缩压（mmHg）">
+		<van-stepper value="{{ examine.systolic }}" data-key='systolic' min='{{20}}' max='{{300}}' integer
+			input-width="40px" button-size="32px" bind:change="onStepperChange" />
+	</van-cell>
+	<van-cell title="收缩压（mmHg）">
+		<van-stepper value="{{ examine.diastole }}" data-key='diastole' min='{{20}}' max='{{300}}' integer
+			input-width="40px" button-size="32px" bind:change="onStepperChange" />
+	</van-cell>
+
+	<view class="bg-color-white p30 mt20">
+		<view>
+			阳性体征
+		</view>
+		<view class="flex_lr_m mt20">
+			<view class="f28 c333 flex1">
+				<textarea data-key='positiveSigns' placeholder="输入阳性体征..." maxlength="1000" value="{{ examine.positiveSigns}}"
+					bind:input="onAreaVal" placeholder-style="c999"></textarea>
+			</view>
+		</view>
+		<view class="tr c999 f28 pt10">
+			{{examine.positiveSigns.length}}/1000
+		</view>
+	</view>
+	<view class="bg-color-white p30 mt20">
+		<view>
+			必要的阴性体征
+		</view>
+		<view class="flex_lr_m mt20">
+			<view class="f28 c333 flex1">
+				<textarea data-key='negativeSigns' placeholder="输入必要的阴性体征..." maxlength="1000" value="{{ examine.negativeSigns}}"
+					bind:input="onAreaVal" placeholder-style="c999"></textarea>
+			</view>
+		</view>
+		<view class="tr c999 f28 pt10">
+			{{examine.negativeSigns.length}}/1000
+		</view>
+	</view>
+	<view class="bg-color-white p30 mt20">
+		<view>
+			更多检查结果
+		</view>
+		<view class="flex_lr_m mt20">
+			<view class="f28 c333 flex1">
+				<textarea data-key='moreExamine' placeholder="输入更多检查结果..." maxlength="1000" value="{{ examine.moreExamine}}"
+					bind:input="onAreaVal" placeholder-style="c999"></textarea>
+			</view>
+		</view>
+		<view class="tr c999 f28 pt10">
+			{{examine.moreExamine.length}}/1000
+		</view>
+	</view>
+</view>
+<view class="fixed b0 l0 w100 bg-color-white">
+	<view class="confir pl30 pr30" bind:tap="handleSave">
+		<button>
+			保 存
+		</button>
+	</view>
+</view>

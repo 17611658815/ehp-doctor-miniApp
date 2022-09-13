@@ -9,6 +9,7 @@ module.exports = {
   WebViewUrl: WebViewUrl,
   genLoginKey: WxApiRoot + 'ad/login/genLoginKey', //post 获取loginkey
   getPublicKey: WxApiRoot + 'ad/login/getPublicKey', //post 获取加密公钥
+  globalConfig: WxApiRoot + 'ad/doctorInfo/globalConfig', //post 全局配置
   login: WxApiRoot + 'ad/login', //post 登陆
   getMyPatient: WxApiRoot + 'ad/patient/my', //post 我的患者
   getBaseInfo: WxApiRoot + 'ad/index/baseInfo', //post 首页基本信息
@@ -20,6 +21,7 @@ module.exports = {
   chatHistory: WxApiRoot + 'im/session/details', // post 图文问诊记录
   sendMessage: WxApiRoot + 'im/chat/sendMessage', // post 发送消息
   uplodeFile: WxApiRoot + 'im/chat/media/upload', // post 上传资源
-  illnessDetail: WxApiRoot + 'emr/patient/disease/detail' //病情详情
+  illnessDetail: WxApiRoot + 'emr/patient/disease/detail', //post 病情详情
+	uploadImg: WxApiRoot + 'emr/patient/disease/img/upload', //post 上传图片
 
 }

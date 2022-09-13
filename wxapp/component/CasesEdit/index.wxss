@@ -1,0 +1,44 @@
+/* component/CasesEdi/index.wxss */
+@import '../../app.wxss';
+
+.content textarea{
+  width: 100%;
+  height: 300rpx;
+  border: 2rpx solid #EEEEEE;
+  box-sizing: border-box;
+  padding: 20rpx;border-radius: 8rpx;
+  color: #333;
+  font-size: 32rpx;
+}
+.drug text{
+  height: 56rpx;
+  box-sizing: border-box;
+  border: 2rpx solid  #EEEEEE;
+  border-radius: 4rpx;
+  display: inline-block;
+  font-size: 28rpx;
+  color: #999999;
+  padding: 0 16rpx;
+  line-height: 52rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+}
+.drug text.cur{
+  background: var(--themeColor);
+  border-color: var(--themeColor);
+  color: #fff;
+}
+.confir{
+  padding-top: 40rpx;
+  border-top: none;
+}
+.container{
+	min-height: 900rpx;
+	position: relative;
+}
+.confir{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}

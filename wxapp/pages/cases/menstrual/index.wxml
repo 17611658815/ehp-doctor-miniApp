@@ -1,0 +1,51 @@
+<navbar isBack="{{true}}" backgroundColor='#fff' navTitle="月经史"></navbar>
+<view class="container bg-color-gray-light pb160">
+	<van-field data-key='status'
+		model:value="{{menstrualColumns['status'][menstrual.status] ? menstrualColumns['status'][menstrual.status] :'' }}"
+		bindtap="switch" input-align='right' readonly is-link='{{true}}' label="月经情况" />
+
+	<van-field wx:if="{{menstrual.status==1}}" data-key='firstAge'
+		model:value="{{menstrual.firstAge ? menstrual.firstAge+'岁' :'' }}" bindtap="switch" input-align='right' readonly
+		is-link='{{true}}' label="初潮年龄" />
+
+	<van-field wx:if="{{menstrual.status==1}}" data-key='cycle'
+		model:value="{{menstrual.cycle ? menstrual.cycle+'天' :'' }}" bindtap="switch" input-align='right' readonly
+		is-link='{{true}}' label="月经周期" />
+
+	<van-field wx:if="{{menstrual.status==1}}" data-key='processDays'
+		model:value="{{menstrual.processDays ? menstrual.processDays+'天' :'' }}" bindtap="switch" input-align='right'
+		readonly is-link='{{true}}' label="行经天数" />
+
+
+
+	<van-cell title="是否痛经" wx:if="{{menstrual.status==1}}">
+		<van-radio-group value="{{ menstrual.dysmenorrhea }}" bind:change="onRadioChange">
+			<view class="flex_c_end">
+				<van-radio name="{{1}}">是</van-radio>
+				<van-radio class="ml20" name="{{2}}">否</van-radio>
+			</view>
+		</van-radio-group>
+	</van-cell>
+
+	<view class="bg-color-white p30 bb1" wx:if="{{menstrual.status==1}}">
+		<view class="flex_lr_m mt20">
+			<view class="f28 c333 flex1">
+				<textarea placeholder="请输入疼痛部位、性质或程度等…..." value="{{ menstrual.part}}" bind:input="onAreaVal"
+					placeholder-style="c999"></textarea>
+			</view>
+		</view>
+	</view>
+
+</view>
+<view class="fixed b0 l0 w100 bg-color-white">
+	<view class="confir pl30 pr30" bind:tap="handleSave"> 
+		<button>
+			保 存
+		</button>
+	</view>
+</view>
+
+<van-popup show="{{show}}" bind:close='bindPickerCancel' close-on-click-overlay='{{true}}' round='{{true}}'
+	position="bottom">
+	<van-picker show-toolbar columns="{{ menstrualColumns[type] }}" title='请选择' bind:confirm='bindPickerConfim' />
+</van-popup>

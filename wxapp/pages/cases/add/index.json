@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-		"uploadImg": "/component/uploadImg/index"
+		"uploadImg": "/component/uploadImg/index",
+		"CasesEdit": "/component/CasesEdit/index"
 	},
 	"navigationStyle":"custom"
 }

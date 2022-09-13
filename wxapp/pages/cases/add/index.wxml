@@ -15,119 +15,119 @@
 			<text class="f28 c333 flex1"></text>
 		</view>
 	</view>
-	<view class="bg-color-white mt20 p30 bb1">
+	<view class="bg-color-white mt20 p30 bb1" data-title='主诉' data-key='mainComplaint' data-type='1'
+		bind:tap="handleEdit">
 		<view class="flex_m f24 c666">
 			主诉<text class="rd flex_m">*</text>
 		</view>
 		<view class="flex_lr_m mt20">
 			<view class="f28 c333 flex1">
-				腹胀伴恶心呕吐3月余，加重2周
+				{{medicalRecord.mainComplaint}}
 			</view>
 			<view class="right-icon c999"></view>
 		</view>
 	</view>
-	<view class="bg-color-white p30 bb1">
+	<view class="bg-color-white p30 bb1" data-title='现病史' data-key='presentDisease' data-type='2' bind:tap="handleEdit">
 		<view class="flex_m f24 c666">
 			现病史<text class="rd flex_m">*</text>
 		</view>
 		<view class="flex_lr_m mt20">
 			<view class="f28 c333 flex1">
-				慢性肾炎，肾病综合症
+				{{medicalRecord.presentDisease}}
 			</view>
 			<view class="right-icon c999"></view>
 		</view>
 	</view>
-	<view class="bg-color-white p30 bb1">
+	<view class="bg-color-white p30 bb1" data-title='既往史' data-key='pastHistory' data-type='3' bind:tap="handleEdit">
 		<view class="flex_m f24 c666">
 			既往史<text class="rd flex_m">*</text>
 		</view>
 		<view class="flex_lr_m mt20">
 			<view class="f28 c333 flex1">
-				糖尿病
+				{{medicalRecord.pastHistory}}
 			</view>
 			<view class="right-icon c999"></view>
 		</view>
 	</view>
-	<view class="bg-color-white p30 bb1">
+	<view class="bg-color-white p30 bb1" data-title='过敏史' data-key='allergy' data-type='4' bind:tap="handleEdit">
 		<view class="flex_m f24 c666">
 			过敏史<text class="rd flex_m">*</text>
 		</view>
 		<view class="flex_lr_m mt20">
 			<view class="f28 c333 flex1">
-				磺胺过敏，青霉素过敏
+				{{medicalRecord.allergy}}
 			</view>
 			<view class="right-icon c999"></view>
 		</view>
 	</view>
-	<view class="bg-color-white p30 bb1">
+	<view class="bg-color-white p30 bb1" data-title='家庭史' data-key='pastFamily' data-type='5' bind:tap="handleEdit">
 		<view class="flex_m f24 c666">
 			家庭史<text class="rd flex_m">*</text>
 		</view>
 		<view class="flex_lr_m mt20">
 			<view class="f28 c333 flex1">
-				父亲有高血压病史10余年，无兄弟姐妹，否认家族中
-				有类似患者
+				{{medicalRecord.pastFamily}}
 			</view>
 			<view class="right-icon c999"></view>
 		</view>
 	</view>
-	<view class="bg-color-white p30 bb1">
+	<view class="bg-color-white p30 bb1" data-title='月经史' data-key='menstrual' data-type='6' bind:tap="handleEdit">
 		<view class="flex_m f24 c666">
 			月经史
 		</view>
 		<view class="flex_lr_m mt20">
 			<view class="f28 c333 flex1">
 				<view>
-					月经情况：已初潮
+					月经情况：{{menstrualColumns['status'][medicalRecord.menstrual.status]}}
 				</view>
-				<view>
-					初潮年龄：无
+				<view wx:if="{{medicalRecord.menstrual.status == 1}}">
+					初潮年龄：{{medicalRecord.menstrual.firstAge ? medicalRecord.menstrual.firstAge + '岁' : '无'}}
 				</view>
-				<view>
-					月经周期：无
+				<view wx:if="{{medicalRecord.menstrual.status == 1}}">
+					月经周期：{{medicalRecord.menstrual.cycle ? medicalRecord.menstrual.cycle + '天' : '无'}}
 				</view>
-				<view>
-					行经天数：无
+				<view wx:if="{{medicalRecord.menstrual.status == 1}}">
+					行经天数：{{medicalRecord.menstrual.processDays ? medicalRecord.menstrual.processDays + '天' : '无'}}
 				</view>
-				<view>
-					是否痛经：是
+				<view wx:if="{{medicalRecord.menstrual.status == 1}}">
+					是否痛经：{{medicalRecord.menstrual.dysmenorrhea == 1 ? '是' : '否'}}
 				</view>
-				<view>
-					小腹疼痛，肚子坠胀
+				<view wx:if="{{medicalRecord.menstrual.status == 1}}">
+					{{medicalRecord.menstrual.part ? medicalRecord.menstrual.part  : '无'}}
 				</view>
 			</view>
 			<view class="right-icon c999"></view>
 		</view>
 	</view>
-	<view class="bg-color-white p30 bb1">
+	<view class="bg-color-white p30 bb1" data-title='检查指标' data-key='examine' data-type='7' bind:tap="handleEdit">
 		<view class="flex_m f24 c666">
 			检查指标
 		</view>
 		<view class="flex_lr_m mt20">
 			<view class="f28 c333 flex1">
 				<view>
-					体温：36.5度
+					体温：{{medicalRecord.temperature ? medicalRecord.temperature +'度':'无'}}
 				</view>
 				<view>
-					体重：47kg
+					体重：{{medicalRecord.weight ? medicalRecord.weight +'kg':'无'}}
 				</view>
 				<view>
-					心率：98bpm
+					心率：{{medicalRecord.heartRete ? medicalRecord.heartRete +'bpm':'无'}}
 				</view>
 				<view>
-					收缩压：无
+					收缩压：{{medicalRecord.systolic ? medicalRecord.systolic +'mmHg':'无'}}
 				</view>
 				<view>
-					舒张压：无
+					舒张压：{{medicalRecord.diastole ? medicalRecord.diastole +'mmHg':'无'}}
 				</view>
 				<view>
-					阳性体征：肺部可闻及干啰音和湿啰音肺脓肿出现杵 状指
+					阳性体征：{{medicalRecord.diastole ? medicalRecord.positiveSigns :'无'}}
 				</view>
 				<view>
-					必要的阴性体征：无
+					必要的阴性体征：{{medicalRecord.negativeSigns ? medicalRecord.negativeSigns :'无'}}
 				</view>
 				<view>
-					更多检查结果：无
+					更多检查结果：{{medicalRecord.moreExamine ? medicalRecord.moreExamine :'无'}}
 				</view>
 			</view>
 			<view class="right-icon c999"></view>
@@ -150,14 +150,16 @@
 		</view>
 		<view class="flex_lr_m mt20">
 			<view class="f28 c333 flex1">
-				<textarea placeholder="请输入治疗意见..." value="" bind:input="onAreaVal" placeholder-style="c999"></textarea>
+				<textarea placeholder="请输入治疗意见..." value="{{medicalRecord.treatmentOptions}}" data-key='treatmentOptions'
+					bind:input="onAreaVal" placeholder-style="c999"></textarea>
 				<view class="drug pt30">
-					<text wx:for="{{tagList}}" wx:key="index" data-value="{{item}}" bindtap="onTagTap">{{item}}</text>
+					<text wx:for="{{tagList}}" wx:key="index" data-key='treatmentOptions' data-value="{{item}}" wx:key='index'
+						bindtap="onTagTap">{{item}}</text>
 				</view>
 			</view>
 		</view>
 		<view class="bg-color-white">
-			<uploadImg imgList="{{imgList}}" size="9" bind:onImgUpload="onImgUpload"></uploadImg>
+			<uploadImg imgList="{{medicalRecord.imgList}}" size="9" bind:onImgUpload="onImgUpload"></uploadImg>
 		</view>
 	</view>
 </view>
@@ -168,3 +170,5 @@
 		</button>
 	</view>
 </view>
+
+<CasesEdit bind:onConfim='onConfimVal' id="casesEdit"></CasesEdit>

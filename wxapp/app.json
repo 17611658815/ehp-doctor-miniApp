@@ -10,7 +10,9 @@
     "pages/my/index",
     "pages/illnessDetail/illnessDetail",
     "pages/cases/add/index",
-    "pages/cases/detail/index"
+    "pages/cases/detail/index",
+    "pages/cases/menstrual/index",
+    "pages/cases/examine/index"
   ],
   "plugins": {},
   "window": {

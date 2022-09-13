@@ -133,6 +133,7 @@ Page({
       })
       util.setUserInfo(data.data)
       app.getConnectParams()
+      app.getGlobalConfig()
     } catch (error) {
       throw new Error(error)
     }

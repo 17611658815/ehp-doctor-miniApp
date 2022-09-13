@@ -1,0 +1,54 @@
+<van-popup show="{{show}}" bind:close='switch' closeable close-on-click-overlay='{{true}}' round='{{true}}'
+	position="bottom">
+	<view class="container p30">
+		<view class="pb30">
+			{{title}}
+		</view>
+		<textarea placeholder-class="cB4B4B4" value="{{medicalRecord[key]}}" placeholder="请输入" maxlength="1000"
+			bindinput="onAreaVal"></textarea>
+		<view class="clearfix pt15 f28 pb40">
+			<view class="fl c333" bindtap="handleClearValue">清空</view>
+			<view class="fr cB4B4B4">{{medicalRecord[key].length}}/1000</view>
+		</view>
+		<!-- 既往史 -->
+		<view wx:if='{{type==="3"}}'>
+			<view>
+				{{globalConfig.pastList[0].name}}
+			</view>
+			<view class="drug pt30">
+				<text wx:for="{{globalConfig.pastList[0].itemList}}" wx:key="index" data-value="{{item}}" wx:key='index'
+					bindtap="onTagTap">{{item}}</text>
+			</view>
+		</view>
+		<!-- 过敏史 -->
+		<view wx:if='{{type==="4"}}'>
+			<view>
+				{{globalConfig.pastList[1].name}}
+			</view>
+			<view class="drug pt30">
+				<text wx:for="{{globalConfig.pastList[1].itemList}}" wx:key="index" data-value="{{item}}" wx:key='index'
+					bindtap="onTagTap">{{item}}</text>
+			</view>
+		</view>
+		<!-- 家庭史 -->
+		<view wx:if='{{type==="5"}}'>
+			<view>
+				家庭成员
+			</view>
+			<view class="drug pt30">
+				<text wx:for="{{globalConfig.pastList[2].itemList}}" wx:key="index" data-value="{{item}}" wx:key='index'
+					bindtap="onTagTap">{{item}}</text>
+			</view>
+			<view>
+				{{globalConfig.pastList[2].name}}
+			</view>
+			<view class="drug pt30">
+				<text wx:for="{{globalConfig.historyFamilyList}}" wx:key="index" data-value="{{item}}" wx:key='index'
+					bindtap="onTagTap">{{item}}</text>
+			</view>
+		</view>
+		<view class="confir p30">
+			<button bindtap="handleConfirm">保 存</button>
+		</view>
+	</view>
+</van-popup>

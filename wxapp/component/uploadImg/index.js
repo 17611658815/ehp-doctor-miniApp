@@ -52,7 +52,7 @@ Component({
         return false
       }
       var that = this
-      var token = wx.getStorageSync('token')
+      var userInfo = wx.getStorageSync('userInfo')
       const sysInfo = wx.getSystemInfoSync()
       util.showLoading({
         title: '上传中~',
@@ -64,20 +64,22 @@ Component({
         name: 'files',
         header: {
           'content-type': 'multipart/form-data',
-          'Authorization': token,
+          'token': userInfo.token,
           '_m': sysInfo.model,
-          '_o': 0,
-          '_w': 1
+          '_o': 1,
+          '_w': 1,
+          '_p': 1
         },
         success: function(res) {
           util.hideLoading()
           var res = JSON.parse(res.data)
           var srcArr = that.data.imgList
+					console.log(res.data,77)
           srcArr.push(res.data[0])
           that.setData({
             imgList: srcArr
           })
-          that.triggerEvent('onImgUpload', { srcArr })
+          that.triggerEvent('onImgUpload', { uploadImgList: srcArr})
         },
         complete: () => {
           i++
