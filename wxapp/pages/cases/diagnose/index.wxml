@@ -1,0 +1,46 @@
+<navbar isBack="{{true}}" backgroundColor='#fff' navTitle="填写诊断"></navbar>
+<view class="container bg-color-gray-light pb160">
+	<view class="bg-color-white">
+		<view class="diagnose flex p30" wx:if='{{checkedList.length}}'>
+			<view class="diagnose-item mr10 mb10" wx:for="{{checkedList}}" wx:key="index">
+				<van-tag closeable size="large" type="primary" id="primary" data-index='{{index}}' bind:close="handleClose">
+					{{item}}
+				</van-tag>
+			</view>
+		</view>
+		<view>
+			<van-field value="{{ searchVal }}" placeholder="搜索诊断" border="{{ false }}" bind:change="onInputVal" />
+		</view>
+	</view>
+
+	<block wx:if='{{!list.length}}'>
+		<view class="p30 c666 f24">
+			常用诊断
+		</view>
+		<view class="bg-color-white rel">
+			<van-index-bar index-list="{{ indexList }}" wx:key="index">
+				<view wx:for='{{newList}}'>
+					<van-index-anchor class="" index="{{item.key}}" />
+					<van-cell bind:tap="handleTag" data-name='{{key.name}}' wx:for='{{item.voList}}' wx:for-item="key"
+						title="{{key.name}}" wx:key='index' />
+				</view>
+			</van-index-bar>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="search-list bb1 bg-color-white p30 flex_lr_m" wx:for='{{list}}' data-name='{{item.name}}'
+			bindtap="handleTag">
+			<searchTextView keyword='{{searchVal}}' class="search-list-item f28" datas='{{searchData[index]}}'
+				data-id='{{item.id}}' />
+			<text>{{item.code}}</text>
+		</view>
+	</block>
+</view>
+
+<view class="fixed b0 l0 w100 bg-color-white">
+	<view class="confir pl30 pr30" bind:tap="handleSave">
+		<button>
+			保 存
+		</button>
+	</view>
+</view>

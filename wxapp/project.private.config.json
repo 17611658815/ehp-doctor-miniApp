@@ -28,7 +28,7 @@
         {
           "name": "新增病例",
           "pathName": "pages/cases/add/index",
-          "query": "id=290",
+          "query": "patientId=290&inquirerId=425",
           "launchMode": "default",
           "scene": null
         },
@@ -42,6 +42,13 @@
         {
           "name": "检查指标",
           "pathName": "pages/cases/examine/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "病例填写诊断",
+          "pathName": "pages/cases/diagnose/index",
           "query": "",
           "launchMode": "default",
           "scene": null

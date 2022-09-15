@@ -17,12 +17,6 @@ Page({
 			positiveSigns:'',//阳性体征
 			negativeSigns:'',//必要阳性体征
 			moreExamine:'',//更多检测结果
-		},
-		maxVal: {
-			temperature: {
-				max: 45,
-				min: 30,
-			}
 		}
 	},
 
@@ -85,7 +79,7 @@ Page({
 		}, () => {
 			wx.navigateBack({
 				delta: 1
-			});
+			})
 		})
 		console.log(this.data.examine ,'===============examine==============')
 	},

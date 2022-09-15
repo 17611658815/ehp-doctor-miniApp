@@ -1,17 +1,17 @@
 <navbar isBack="{{true}}" backgroundColor='#fff' navTitle="添加病例"></navbar>
 <view class="container bg-color-gray-light pb160">
 	<view class="f36 c333 mt10 p30 bg-color-white bt10 tc">
-		奈特瑞互联网医院电子病历
+		{{casesInfo.hospital}}
 	</view>
 	<view class="bg-color-white mt5 p30">
 		<view class="flex_lr_m">
-			<text class="f28 c333 flex1">姓名：马可波罗</text>
-			<text class="f28 c333 flex1">性别：女</text>
-			<text class="f28 c333 flex1">年龄：25岁</text>
+			<text class="f28 c333 flex1">姓名：{{casesInfo.name}}</text>
+			<text class="f28 c333 flex1">性别：{{casesInfo.gender == 1 ?'男':casesInfo.gender == 0?'女':'未知' }}</text>
+			<text class="f28 c333 flex1">年龄：{{casesInfo.ageStr}}</text>
 		</view>
 		<view class="flex_lr_m mt20">
-			<text class="f28 c333 flex1">科室：康复科</text>
-			<text class="f28 c333">时间：2021-09-01</text>
+			<text class="f28 c333 flex1">科室：{{casesInfo.department}}</text>
+			<text class="f28 c333">时间：{{timestamp}}</text>
 			<text class="f28 c333 flex1"></text>
 		</view>
 	</view>
@@ -121,7 +121,7 @@
 					舒张压：{{medicalRecord.diastole ? medicalRecord.diastole +'mmHg':'无'}}
 				</view>
 				<view>
-					阳性体征：{{medicalRecord.diastole ? medicalRecord.positiveSigns :'无'}}
+					阳性体征：{{medicalRecord.positiveSigns ? medicalRecord.positiveSigns :'无'}}
 				</view>
 				<view>
 					必要的阴性体征：{{medicalRecord.negativeSigns ? medicalRecord.negativeSigns :'无'}}
@@ -133,13 +133,13 @@
 			<view class="right-icon c999"></view>
 		</view>
 	</view>
-	<view class="bg-color-white p30 bb1">
+	<view class="bg-color-white p30 bb1" data-title='诊断' data-key='diagnosisList' data-type='8' bind:tap="handleEdit">
 		<view class="flex_m f24 c666">
 			诊断<text class="rd flex_m">*</text>
 		</view>
 		<view class="flex_lr_m mt20">
 			<view class="f28 c333 flex1">
-				阿诺德-基里亚综合症
+				<text class="f28 c333" wx:for="{{medicalRecord.diagnosisList}}">{{ index > 0 ? '、'+item:item}}</text>
 			</view>
 			<view class="right-icon c999"></view>
 		</view>
@@ -153,8 +153,8 @@
 				<textarea placeholder="请输入治疗意见..." value="{{medicalRecord.treatmentOptions}}" data-key='treatmentOptions'
 					bind:input="onAreaVal" placeholder-style="c999"></textarea>
 				<view class="drug pt30">
-					<text wx:for="{{tagList}}" wx:key="index" data-key='treatmentOptions' data-value="{{item}}" wx:key='index'
-						bindtap="onTagTap">{{item}}</text>
+					<text wx:for="{{casesInfo.treatmentPresetOptions}}" wx:key="index" data-key='treatmentOptions'
+						data-value="{{item}}" wx:key='index' bindtap="onTagTap">{{item}}</text>
 				</view>
 			</view>
 		</view>
@@ -164,9 +164,9 @@
 	</view>
 </view>
 <view class="fixed b0 l0 w100 bg-color-white">
-	<view class="confir pl30 pr30">
+	<view class="confir pl30 pr30" bind:tap="handleSave">
 		<button>
-			下一步
+			保 存
 		</button>
 	</view>
 </view>

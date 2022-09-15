@@ -87,8 +87,9 @@ function _request(url, data, method, headers, resolve, reject) {
     method: method,
     header: Object.assign(header, headerParams),
     success: response => {
+			console.log(response.data.code,90)
       // 因token异常返回参数为重复字符串无法判断去登陆 只能通过判断返回参数为字符串
-      if (typeof response.data === 'string') {
+      if (response.data.code === 1) {
         wx.reLaunch({
           url: '/pages/auth/login/login'
         })

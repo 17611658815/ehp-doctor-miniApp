@@ -1,0 +1,4 @@
+/* pages/cases/diagnose/index.wxss */
+.diagnose{
+	flex-wrap: wrap;
+}

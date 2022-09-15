@@ -12,7 +12,8 @@
     "pages/cases/add/index",
     "pages/cases/detail/index",
     "pages/cases/menstrual/index",
-    "pages/cases/examine/index"
+    "pages/cases/examine/index",
+    "pages/cases/diagnose/index"
   ],
   "plugins": {},
   "window": {

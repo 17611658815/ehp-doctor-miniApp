@@ -789,6 +789,7 @@ Page({
           firstBinding: cdata.data.firstBinding,
           firstNum: cdata.data.firstBinding
         }, () => {
+					console.log()
           this.getPatientRemark()
           this.getTiemNumer()
           this.initScrollHeigth()
@@ -1044,15 +1045,19 @@ Page({
       throw new Error(error)
     }
   },
+
+	// doctorId=158&inquirerId=425&patientId=290&token=
   handleNavigateTop(e) {
     const {
-      patientId
+      patientId,
+			InquirerInfo,
+			relation
     } = this.data
     const {
       url
     } = e.currentTarget.dataset
     wx.navigateTo({
-      url: `${url}?id=${patientId}`
+      url: `${url}?patientId=${patientId}&inquirerId=${InquirerInfo.inquirerId}&relation=${InquirerInfo.relation}&consultType=1`
     })
   }
 })

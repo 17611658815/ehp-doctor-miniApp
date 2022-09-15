@@ -18,10 +18,15 @@ module.exports = {
   getPatientRemark: WxApiRoot + 'ad/patient/detail/remark', // post 患者信息
   sessionList: WxApiRoot + 'im/session/list', //post 问诊倒计时
   getStatus: WxApiRoot + 'im/session/status', // get 获取系统时间
-  chatHistory: WxApiRoot + 'im/session/details', // post 图文问诊记录
+  chatHistory: WxApiRoot + 'im/session/details', // post 图文记录
   sendMessage: WxApiRoot + 'im/chat/sendMessage', // post 发送消息
   uplodeFile: WxApiRoot + 'im/chat/media/upload', // post 上传资源
   illnessDetail: WxApiRoot + 'emr/patient/disease/detail', //post 病情详情
 	uploadImg: WxApiRoot + 'emr/patient/disease/img/upload', //post 上传图片
+	initCase: WxApiRoot + 'emr/case/initCase', //post 初始化病例
+	initialize: WxApiRoot + 'emr/case/record/add/initialize', //get 初始化主诉病情
+	diagnosisNewList: WxApiRoot + 'recommend/diagnosis/new/list', //post 常用诊断
+	diagnosisSearch: WxApiRoot + 'recommend/diagnosis/search', //post 诊断搜索
+	saveDrCase: WxApiRoot + 'emr/case/saveDrCase', //post 病例保存
 
 }

@@ -1,0 +1,9 @@
+{
+	"usingComponents": {
+		"van-tag": "../../../lib/vant-weapp/tag/index",
+		"van-index-bar": "../../../lib/vant-weapp/index-bar/index",
+		"van-index-anchor": "../../../lib/vant-weapp/index-anchor/index",
+		"searchTextView": "../../../component/SearchTextView/index"
+	},
+	"navigationStyle": "custom"
+}
