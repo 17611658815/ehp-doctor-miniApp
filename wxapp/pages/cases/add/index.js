@@ -8,8 +8,8 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		relation:0,
-		consultType:1,
+		relation: 0,
+		consultType: 1,
 		inquirerId: '',
 		patientId: '',
 		casesInfo: '',
@@ -35,6 +35,9 @@ Page({
 		menstrualColumns: {
 			'status': ['未初潮', '已初潮', '已绝经'],
 		},
+		uniqueId: '',
+		recordId: '',
+		isSecret: null,
 	},
 	// 接受子组件图片数据
 	onImgUpload(event) {
@@ -73,10 +76,11 @@ Page({
 			patientId: options.patientId,
 			relation: options.relation,
 			timestamp: util.getTime(new Date()),
-			consultType:options.consultType
+			consultType: options.consultType
 		})
 		this.initCases()
 		this.initialize()
+		this.getNoSecret()
 	},
 	handleEdit(e) {
 		const {
@@ -122,6 +126,27 @@ Page({
 		})
 		console.log(this.data.medicalRecord, '==========medicalRecord============')
 	},
+	async getNoSecret() {
+		try {
+			const userInfo = wx.getStorageSync('userInfo')
+			const {
+				data
+			} = await util.request(`${api.getNoSecret}?token=${userInfo.token}&doctorId=${userInfo.doctorId}`)
+			if (data.code !== 0) {
+				util.showToast({
+					title: data.msg,
+					icon: 'none',
+					duration: 3000
+				})
+				return
+			}
+			this.setData({
+				isSecret: data.data.noSecret
+			})
+		} catch (error) {
+			throw new Error(error)
+		}
+	},
 	async initCases() {
 		try {
 			const {
@@ -145,7 +170,6 @@ Page({
 			this.setData({
 				casesInfo: data.data
 			})
-			console.log(data, 73)
 		} catch (error) {
 			throw new Error(error)
 		}
@@ -173,12 +197,11 @@ Page({
 				'medicalRecord.pastHistory': data.data.pastHistory,
 				'medicalRecord.allergy': data.data.allergy
 			})
-			console.log(data, 158)
 		} catch (error) {
 			throw new Error(error)
 		}
 	},
- async handleSave() {
+	async handleSave() {
 		try {
 			const {
 				medicalRecord,
@@ -186,52 +209,56 @@ Page({
 				patientId,
 				casesInfo,
 				consultType,
-				relation
+				relation,
+				isSecret
 			} = this.data
 			const params = {
 				consultType,
 				inquirerId,
 				patientId,
 				relation,
+				hospitalName: casesInfo.hospital,
 				// 年龄
+				gender: casesInfo.gender,
 				age: casesInfo.age,
 				ageStr: casesInfo.ageStr,
 				ageUnit: casesInfo.ageUnit,
-				patientGender:casesInfo.gender,
-				patientName:casesInfo.name,
-				// 月经史
-				cycle:medicalRecord.menstrual.cycle,
-				dysmenorrhea:medicalRecord.menstrual.dysmenorrhea,
-				firstAge:medicalRecord.menstrual.firstAge,
-				part:medicalRecord.menstrual.part,
-				processDays:medicalRecord.menstrual.processDays,
-				status:medicalRecord.menstrual.status,
-				diagnosisList:medicalRecord.diagnosisList,
+				patientGender: casesInfo.gender,
+				patientName: casesInfo.name,
+				department: casesInfo.department,
+				diagnosisList: medicalRecord.diagnosisList,
 				// 更多检测结果
-				diastole:medicalRecord.diastole,
-				heartRete:medicalRecord.heartRete,
-				moreExamine:medicalRecord.moreExamine,
-				systolic:medicalRecord.systolic,
-				negativeSigns:medicalRecord.negativeSigns,
-				positiveSigns:medicalRecord.positiveSigns,
-				temperature:medicalRecord.temperature,
-				weight:medicalRecord.weight,
-				treatmentOptions:medicalRecord.treatmentOptions,
+				diastole: medicalRecord.diastole,
+				heartRete: medicalRecord.heartRete,
+				moreExamin: medicalRecord.moreExamine,
+				systolic: medicalRecord.systolic,
+				negativeSigns: medicalRecord.negativeSigns,
+				positiveSigns: medicalRecord.positiveSigns,
+				temperature: medicalRecord.temperature,
+				weight: medicalRecord.weight,
+				treatmentOptions: medicalRecord.treatmentOptions,
 				// 主诉
-				mainComplaint:medicalRecord.mainComplaint,
+				mainComplaint: medicalRecord.mainComplaint,
 				// 家庭史
-				pastFamily:medicalRecord.pastFamily,
+				pastFamily: medicalRecord.pastFamily,
 				// 既往史
-				pastHistory:medicalRecord.pastHistory,
+				pastHistory: medicalRecord.pastHistory,
 				// 过敏史
-				allergy:medicalRecord.allergy,
+				allergy: medicalRecord.allergy,
 				// 现病史
-				presentDisease:medicalRecord.presentDisease,
-				imgList:medicalRecord.imgList,
+				presentDisease: medicalRecord.presentDisease,
+				imgList: medicalRecord.imgList,
+				revisitFalg: '2',
+				send: '1',
+				templateId: '1',
+				templateType: '1'
+			}
+			if (casesInfo.gender === 0) {
+				params = Object.assign(params, medicalRecord.menstrual)
 			}
 			const {
 				data
-			} = await util.request(api.saveDrCase,params,'post')
+			} = await util.request(api.saveDrCase, params, 'post')
 			if (data.code !== 0) {
 				util.showToast({
 					title: data.msg,
@@ -240,11 +267,78 @@ Page({
 				})
 				return
 			}
-			console.log(data, 244)
+			this.setData({
+				uniqueId: data.data.uniqueId,
+				recordId: data.data.recordId
+			},()=>{
+				// true 免密
+				if(isSecret){
+					this.caseSign()
+				}
+			})
 		} catch (error) {
 			throw new Error(error)
 		}
-		console.log(params)
+	},
+	// 医生签名
+	async caseSign() {
+		try {
+			const {
+				uniqueId,
+				recordId
+			} = this.data
+			const {
+				data
+			} = await util.request(api.caseSign, {
+				recordId,
+				uniqueId
+			}, 'post')
+			if (data.code !== 0) {
+				util.showToast({
+					title: data.msg,
+					icon: 'none',
+					duration: 3000
+				})
+				return
+			}
+			// 发送病例
+			this.caseConfirm()
+		} catch (error) {
+			throw new Error(error)
+		}
+	},
+	// 确认发送病例
+	async caseConfirm() {
+		try {
+			const {
+				consultType,
+				recordId
+			} = this.data
+			util.showLoading({
+				title:'loading'
+			})
+			const {
+				data
+			} = await util.request(api.caseConfirm, {
+				consultType,
+				recordId,
+				send:1,
+			}, 'post')
+			util.hideLoading()
+			if (data.code !== 0) {
+				util.showToast({
+					title: data.msg,
+					icon: 'none',
+					duration: 3000
+				})
+				return
+			}
+			wx.navigateBack({
+				delta: 1
+			})
+		} catch (error) {
+			throw new Error(error)
+		}
 	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成

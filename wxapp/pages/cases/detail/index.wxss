@@ -1,1 +1,25 @@
-/* pages/cases/detail/index.wxss */
+view{
+  line-height: 40rpx;
+}
+.chapter{
+  width: 230rpx;
+  height: 230rpx;
+  position: absolute;
+  top: 32rpx;
+  right: 32rpx;
+}
+.sign {
+  display: inline-block;
+  vertical-align: middle;
+	width: 120rpx;
+	height: 60rpx;
+}
+.imgItem{
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 28rpx;
+  margin-bottom: 28rpx;
+}
+.imgItem:nth-child(4n){
+  margin-right: 0rpx;
+}

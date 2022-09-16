@@ -28,5 +28,9 @@ module.exports = {
 	diagnosisNewList: WxApiRoot + 'recommend/diagnosis/new/list', //post 常用诊断
 	diagnosisSearch: WxApiRoot + 'recommend/diagnosis/search', //post 诊断搜索
 	saveDrCase: WxApiRoot + 'emr/case/saveDrCase', //post 病例保存
+	getNoSecret: WxApiRoot + 'ad/esign/user/getNoSecret', //get 是否需要签名
+	caseSign: WxApiRoot + 'emr/case/sign', //post 医师签名
+	caseConfirm: WxApiRoot + 'emr/case/confirm', //post 确认发送病例
+	caseDetail: WxApiRoot + 'emr/record/medicalRecord', //post 病历详情
 
 }

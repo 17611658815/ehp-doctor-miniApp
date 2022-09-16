@@ -72,7 +72,7 @@
 						</view>
 					</view>
 					<!-- 病例 -->
-					<view wx:if="{{item.type == 10005}}" class="systemChat" data-url='/pages/caseDetail/index?id={{item.content.medicalRecordId}}' data-type='1'
+					<view wx:if="{{item.type == 10005}}" class="systemChat" data-url='/pages/cases/detail/index?id={{item.content.medicalRecordId}}' data-type='1'
 						data-id='{{item.content.medicalRecordId}}' catchtap='goPage'>
 						<view class="recipel">
 							<view class="recipelMess">

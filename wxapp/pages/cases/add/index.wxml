@@ -71,7 +71,7 @@
 			<view class="right-icon c999"></view>
 		</view>
 	</view>
-	<view class="bg-color-white p30 bb1" data-title='月经史' data-key='menstrual' data-type='6' bind:tap="handleEdit">
+	<view class="bg-color-white p30 bb1" data-title='月经史' data-key='menstrual' data-type='6' bind:tap="handleEdit" wx:if="{{casesInfo.gender == 0}}">
 		<view class="flex_m f24 c666">
 			月经史
 		</view>

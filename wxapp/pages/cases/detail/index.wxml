@@ -1,2 +1,110 @@
-<!--pages/cases/detail/index.wxml-->
-<text>pages/cases/detail/index.wxml</text>
+<navbar isBack="{{true}}" backgroundColor='#fff' navTitle="病例详情"></navbar>
+<view class="container pb20 bg-color-gray-light" bindtouchmove="touchMove">
+	<view class="bg-color-white p30 rel f28 c333 mt20">
+		<view class="pb20">姓名：{{result.name}}</view>
+		<view class="pb20">性别：{{result.gender==1?'男':result.gender==0?'女':''}}</view>
+		<view class="pb20">年龄：{{result.age}}</view>
+		<view class="pb20">科室：{{result.department}}</view>
+		<view>时间：{{result.createDate}}</view>
+		<view class="chapter">
+			<image src="{{ic_prescription_seal}}" class="imgBlock"></image>
+		</view>
+	</view>
+	<view class="bg-color-white p30 mt20" wx:if="{{result.diagnosisList}}">
+		<view class="bb1 pb20" wx:if='{{settings && settings[7].enabled || !settings}}'>
+			<view class="f32 b c333">诊断</view>
+			<view class="flex_lr_m mt20">
+				<view class="f28 c333 flex1">
+					<text class="f28 c333" wx:for="{{result.diagnosisList}}">{{ index > 0 ? '、'+item:item}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="pt30" wx:if='{{settings && settings[8].enabled || !settings}}'>
+			<view class="f32 b c333">治疗意见</view>
+			<view class="pt20 c333 f28">
+				{{ result.treatmentOptions?result.treatmentOptions:'无' }}</view>
+		</view>
+	</view>
+	<view class="bg-color-white p30 mt20">
+		<view class="bb1" wx:if='{{settings && settings[0].enabled ||!settings}}'>
+			<view class="f32 b c333">主诉</view>
+			<view class="pt20 pb30 c333 f28">{{ result.mainComplaint }}</view>
+		</view>
+		<view class="pt30 bb1" wx:if='{{settings && settings[9].enabled ||!settings}}'>
+			<view class="f32 b c333">个人史</view>
+			<view class="pt20 pb30 c333 f28"> {{ result.personalHistory }}</view>
+		</view>
+		<view class="pt30 bb1" wx:if='{{settings && settings[1].enabled ||!settings}}'>
+			<view class="f32 b c333">现病史</view>
+			<view class="pt20 pb30 c333 f28"> {{ result.presentDisease }}</view>
+		</view>
+		<view class="pt30 bb1" wx:if='{{settings && settings[2].enabled ||!settings}}'>
+			<view class="f32 b c333">既往史</view>
+			<view class="pt20 pb30 c333 f28"> {{ result.pastHistory }}</view>
+		</view>
+		<view class="pt30 bb1" wx:if='{{settings && settings[3].enabled ||!settings}}'>
+			<view class="f32 b c333">过敏史</view>
+			<view class="pt20 pb30 c333 f28"> {{ result.allergy }}</view>
+		</view>
+		<view class="pt30 bb1" wx:if='{{settings && settings[4].enabled ||!settings}}'>
+			<view class="f32 b c333">家庭史</view>
+			<view class="pt20 pb30 c333 f28">{{ result.pastFamily }}</view>
+		</view>
+		<view class="pt30 bb1"
+			wx:if="{{result.gender==0 && settings &&  settings[5].enabled || result.gender==0 &&!settings}}">
+			<view class="f32 b c333">月经史</view>
+			<view class="pt20 pb30 c333 f28">
+				<view>
+					月经情况：{{ !result.menstrual.status && result.menstrual.status !==0  ? '未填写' : menstrualStatus[result.menstrual.status]}}
+				</view>
+				<view wx:if="{{result.menstrual.status==1}}" hover-class="none"
+					hover-stop-propagation="false">
+					<view wx:if='{{result.menstrual.firstAge}}'>
+						初潮年龄：{{ result.menstrual.firstAge + '岁' }}</view>
+					<view wx:else>初潮年龄：无</view>
+					<view wx:if='{{ result.menstrual.cycle}}'>
+						月经周期：{{ result.menstrual.cycle?(result.menstrual.cycle + '天'):'' }}
+					</view>
+					<view wx:else>月经周期：无</view>
+					<view wx:if='{{result.menstrual.processDays}}'>
+						行经天数：{{ result.menstrual.processDays?(result.menstrual.processDays + '天'):'' }}
+					</view>
+					<view wx:else>行经天数：无</view>
+					<view>是否痛经：{{ result.menstrual.dysmenorrhea?'是':'否' }}</view>
+					<view wx:if='{{result.menstrual.part}}'>
+						痛经描述：{{ result.menstrual.part }}</view>
+				</view>
+			</view>
+		</view>
+		<view class="pt30">
+			<view class="f32 b c333">辅助检查</view>
+			<view class="pt20  c333 f28">
+				<!-- <view>体温：{{ result.temperature ? result.temperature + '度' : '无'}}
+				</view>
+				<view>体重：{{ result.weight ? result.weight + 'kg' : '无'}}</view>
+				<view>心率：{{ result.heartRete ? result.heartRete + 'bpm' : '无'}} </view>
+				<view>收缩压：{{ result.systolic ? result.systolic + 'mmHg' : '无'}}</view>
+				<view>舒张压：{{ result.diastole ? result.diastole + 'mmHg' : '无'}} </view>
+				<view>阳性体征：{{ result.positiveSigns?result.positiveSigns:'无' }} </view>
+				<view>阴性体征：{{ result.negativeSigns?result.negativeSigns:'无' }} </view>
+				<view>更多检查结果：{{ result.moreExamine ? result.moreExamine :'无'}}</view> -->
+				<view>{{ result.moreExamin ? result.moreExamin :'无'}}</view>
+			</view>
+		</view>
+	</view>
+	<view class="bg-color-white p30 mt20 clearfix" style="padding-bottom:4rpx"
+		wx:if="{{result.imgList.length>0}}">
+		<view class="imgItem fl" wx:for="{{result.imgList}}" wx:key="index">
+			<image src="{{item.imgUrl}}" class="imgBlock" data-index="{{index}}" bindtap="previewImg"></image>
+		</view>
+	</view>
+	<view class="bg-color-white p30 mt20 f28 c333">
+		<view>
+			医生：{{signInfo.doctorName }}
+			<image wx:if="{{signInfo.sealImage}}" src="{{signInfo.sealImage}}" mode="aspectFit" class="sign">
+			</image>
+			<text class="f24 c666">{{ signInfo.signTime }}</text>
+		</view>
+		<view class="pt20">医院：{{ result.hospitalName }}</view>
+	</view>
+</view>
