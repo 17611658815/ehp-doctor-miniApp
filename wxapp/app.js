@@ -240,6 +240,10 @@ App({
 				message.content.text = message.content.text.replace(/<([\/]?)(font)((:?\s*)(:?[^>]*)(:?\s*))>/g, '<span>')
 				message.content.text = message.content.text.replace(/\<span/gi, '<span class="rich-text" ')
 			}
+			if(message.type === 10005){
+				chatkey = this.globalData.connectParams.msgTopicName + '_'+ message.to.id 
+
+			}
 			util.setChatData(chatkey, message)
 			util.setChatList(chatkey, message)
 		}

@@ -1,0 +1,6 @@
+/* component/CaSignInput/index.wxss */
+@import '../../app.wxss';
+.signIiput{
+	width: 500rpx;
+	margin-top: 30rpx;
+}

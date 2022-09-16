@@ -38,6 +38,7 @@ Page({
 		uniqueId: '',
 		recordId: '',
 		isSecret: null,
+		globalConfig:null
 	},
 	// 接受子组件图片数据
 	onImgUpload(event) {
@@ -69,14 +70,18 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad(options) {
-		console.log(options, 63)
+		const {
+			eSignConfigVO
+		} = wx.getStorageSync('globalConfig')
 		this.casesEdit = this.selectComponent('#casesEdit')
+		this.caInput = this.selectComponent('#caInput')
 		this.setData({
 			inquirerId: options.inquirerId,
 			patientId: options.patientId,
 			relation: options.relation,
+			consultType: options.consultType,
 			timestamp: util.getTime(new Date()),
-			consultType: options.consultType
+			'globalConfig.eSignConfigVO': eSignConfigVO,
 		})
 		this.initCases()
 		this.initialize()
@@ -203,6 +208,7 @@ Page({
 	},
 	async handleSave() {
 		try {
+		
 			const {
 				medicalRecord,
 				inquirerId,
@@ -210,7 +216,8 @@ Page({
 				casesInfo,
 				consultType,
 				relation,
-				isSecret
+				isSecret,
+				globalConfig
 			} = this.data
 			const params = {
 				consultType,
@@ -248,8 +255,8 @@ Page({
 				// 现病史
 				presentDisease: medicalRecord.presentDisease,
 				imgList: medicalRecord.imgList,
+				send: true,
 				revisitFalg: '2',
-				send: '1',
 				templateId: '1',
 				templateType: '1'
 			}
@@ -272,8 +279,16 @@ Page({
 				recordId: data.data.recordId
 			},()=>{
 				// true 免密
+				console.log(isSecret,282)
 				if(isSecret){
 					this.caseSign()
+				} else {
+					if (globalConfig.eSignConfigVO.seviceName === '2') {
+						// E签宝
+					} else {
+						this.caInput.showPopup()
+						// 四川CA
+					}
 				}
 			})
 		} catch (error) {
@@ -339,6 +354,11 @@ Page({
 		} catch (error) {
 			throw new Error(error)
 		}
+	},
+	// 病历签名成功
+	onCaseSigConfim(){
+		this.caseConfirm()
+		console.log('发送病历')
 	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成

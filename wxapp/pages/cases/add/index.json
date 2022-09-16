@@ -1,7 +1,8 @@
 {
   "usingComponents": {
 		"uploadImg": "/component/uploadImg/index",
-		"CasesEdit": "/component/CasesEdit/index"
+		"CasesEdit": "/component/CasesEdit/index",
+		"CaSignInput": "/component/CaSignInput/index"
 	},
 	"navigationStyle":"custom"
 }

@@ -101,6 +101,7 @@ Page({
   async onShow() {
     this.authToast = this.selectComponent('#authToast') //订阅消息二次弹窗
     const userInfo = wx.getStorageSync('userInfo')
+		console.log(this.data.isFirst,this.data.preview,104)
     if (!this.data.isFirst && !this.data.preview) {
       this.setData({
         patientId: this.data.patientId,
@@ -132,7 +133,6 @@ Page({
 	 */
   initChatData() {
     const chatData = util.getChatData(this.data.chatkey)
-    console.log(this.data.chatkey, '============chatData==============')
     this.data.hasPrev = true
     if (chatData) {
       const preList = []

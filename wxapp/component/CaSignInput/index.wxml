@@ -1,0 +1,10 @@
+<van-popup show="{{ show }}" closeable bind:close="bindCancel">
+	<view class="signIiput p30">
+		<van-field type='password' value="{{ password }}" placeholder="签名密码..." border="{{ false }}" bind:change="onInputVal"
+			use-button-slot>
+			<view class="bg-color-primary container-radius cfff f28 p10" bind:tap="handleConfirm" slot="button">
+				确认密码
+			</view>
+		</van-field>
+	</view>
+</van-popup>
