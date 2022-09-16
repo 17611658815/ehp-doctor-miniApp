@@ -1,0 +1,76 @@
+<view class="container">
+	<view class="bg-color-white p30" style="padding-top:{{statusBarHeight+logoHeight}}px">
+		<view class="flex_lr_m">
+			<view class="f38 b c333 flex_m">
+				全部患者
+				<image class="icon_40" src="../../../static/logo/ic_pharmacist_drop.png" mode="aspectFill" />
+			</view>
+			<view class="c333 f28">
+				消息群发
+			</view>
+		</view>
+		<view class="bg-color-gray-light container-radius flex_c_m f28 p20 mt20" style="color:#B4B4B4">
+			<image class="icon_40 mr10" src="../../../static/logo/ic_input_search.png" mode="aspectFill" />
+			搜索患者
+		</view>
+		<view class="flex_m f28 c333 pt20 pb20 bb1">
+			<image class="icon_80 mr20" src="../../../static/logo/ic_patients_new.png" mode="aspectFill" />
+			新增患者
+			<view class="tag cfff f24 flex_c_m bg-color-danger ml30">
+				1
+			</view>
+		</view>
+		<view class="flex_m f28 c333 pt20 pb20">
+			<image class="icon_80 mr20" src="../../../static/logo/ic_patients_grouping.png" mode="aspectFill" />
+			患者分组
+		</view>
+	</view>
+	<block wx:if='{{list.length}}'>
+		<view class="bg-color-white rel">
+			<van-index-bar index-list="{{ indexList }}" wx:key="index">
+				<view>
+					<van-index-anchor class="" index="A" />
+					<view class="consult-list-item bb1" wx:for="{{list}}" wx:key="index">
+						<vant-swipe-cell id="swipe-cell" right-width="{{ 60 }}" async-close data-item="{{index}}"
+							id='for-close-{{index}}'>
+							<view class="left-content p30" data-index="{{index}}" data-patientId='{{item.patientid}}'
+								data-sessionId='{{item.sessionid}}' catchtap='handleTap'>
+								<view class="flex_m">
+									<view class="flex_m">
+										<image class="container-radius icon_80"
+											src="{{item.photo}}"
+											mode="aspectFill" />
+									</view>
+									<view class="ml15">
+										<view>
+											<text class="f32 c333">{{item.name}}</text>
+										</view>
+										<view class="f28 c999 mt10">
+											男 33岁
+										</view>
+									</view>
+								</view>
+							</view>
+							<view class="flex_c_m" slot="right">
+								<view catchtap='handleDel' data-index="{{index}}" class="shanchu f28 cfff flex_c_m">删除</view>
+							</view>
+						</vant-swipe-cell>
+					</view>
+				</view>
+			</van-index-bar>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="emptyBox c666 f28 bt20 flex_line_c_m">
+			<image class="mt50" src="../../../static/logo/img_blank_scan.png" mode="aspectFill" />
+			<view class="mt40">
+				暂无患者
+			</view>
+			<view>
+				快让患者扫描您的二维码吧
+			</view>
+		</view>
+	</block>
+
+
+</view>

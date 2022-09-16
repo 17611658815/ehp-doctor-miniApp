@@ -13,7 +13,7 @@ page {
     "Microsoft Yahei", sans-serif;
   --themeColor: #2893ff;
   --labelColor: #38bf87;
-  --redColor: #f06454;
+  --redColor: #F05542;
   --orangeColor: #FF9B3A;
   --whiteColor: #ffffff;
   --btnThemeColor: #2893ff;
@@ -86,12 +86,16 @@ input {
 .bg-color-primary {
   background: var(--themeColor);
 }
+.bg-color-danger {
+	background-color: var(--redColor);
+}
 .bg-color-gray-light {
   background: var(--bgColor);
 }
 .bg-color-blue-light {
 	background-color: #F2F6FF;
 }
+
 
 .container-radius{
 	border-radius: var(--containerRadius);
@@ -167,8 +171,14 @@ input {
 .bt10 {
   border-top: 10rpx solid #f7f7f7;
 }
+.bt20 {
+  border-top: 20rpx solid #f7f7f7;
+}
 .bb10 {
   border-bottom: 10rpx solid #f7f7f7;
+}
+.bb20 {
+  border-bottom: 20rpx solid #f7f7f7;
 }
 
 .n {

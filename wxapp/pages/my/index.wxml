@@ -1,2 +1,109 @@
-<!--pages/my/index.wxml-->
-<text>pages/my/index.wxml</text>
+<view class="container bg-color-gray-light rel">
+	<view class="header flex_lr_m p30" style="padding-top:{{statusBarHeight+logoHeight}}px">
+		<view class="flex_line">
+			<view class="f44 c333 b">
+				马可波罗
+			</view>
+			<view class="f24 c666 mt5">
+				呼吸内科｜主治医师
+			</view>
+			<view class="f24 c666">
+				中国人民解放军第二六三医院
+			</view>
+		</view>
+		<view class="rel">
+			<image class="header-img"
+				src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83ep3AjedYcXJbxpRvR070h5icX4DAqJJKhzxVrQiaJlQic8xfHia6YPRukgOwCpVoubicsMyhpibDC18sN5g/132"
+				mode="aspectFill" style="width:120rpx;height:120rpx;border-radius: 50%;" />
+			<view class="header-tag cfff f20 tc container-radius flex_m">
+				个人资料 <text class="right-icon"></text>
+			</view>
+		</view>
+	</view>
+	<view class="m20 bg-color-white p20 container-radius">
+		<view class="flex_lr_m">
+			<view class="c333 f32 b">
+				我的收入
+			</view>
+			<view class="c666 f24 flex_m">
+				问诊明细<text class="right-icon"></text>
+			</view>
+		</view>
+		<view class="flex_m mt20">
+			<view class="flex1 br1">
+				<view class="f44 c333 b">
+					234
+				</view>
+				<view class="c999 f20 mt10">
+					本月收入(元)
+				</view>
+			</view>
+			<view class="flex1 br1 pl20">
+				<view class="f44 c333 b">
+					234
+				</view>
+				<view class="c999 f20 mt10">
+					累计收入(元)
+				</view>
+			</view>
+			<view class="flex1 pl20">
+				<view class="f44 c333 b">
+					234
+				</view>
+				<view class="c999 f20 mt10">
+					总问诊数(次)
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="m20 bg-color-gray-light flex_m container-radius">
+		<view class="flex1 bg-color-white p20 flex_lr_m">
+			<view class="flex_m">
+				<image class="icon_60" src="../../static/logo/ic_my_service_settings.png" mode="aspectFill" />
+				<view class="f28 c333 b ml20">
+					服务设置
+				</view>
+			</view>
+			<text class="right-icon c999"></text>
+		</view>
+		<view class="ml20 flex1 bg-color-white p20 flex_lr_m">
+			<view class="flex_m">
+				<image class="icon_60" src="../../static/logo/ic_my_prescription.png" mode="aspectFill" />
+				<view class="f28 c333 b ml20">
+					我的处方
+				</view>
+			</view>
+			<text class="right-icon c999"></text>
+		</view>
+	</view>
+	<view class="m20 bg-color-white container-radius">
+		<navigator open-type="navigate" url="" hover-class="none" class="flex_lr_m p30">
+			<view class="flex_m">
+				<image class="icon_40" src="../../static/logo/ic_my_evaluate.png" mode="aspectFill" />
+				<text class="c666 f32 ml15">就诊人管理</text>
+			</view>
+			<text class="right-icon c999"></text>
+		</navigator>
+		<navigator open-type="navigate" url="" hover-class="none" class="flex_lr_m p30">
+			<view class="flex_m">
+				<image class="icon_40" src="../../static/logo/ic_my_service.png" mode="aspectFill" />
+				<text class="c666 f32 ml15">我的客服</text>
+			</view>
+			<text class="right-icon c999"></text>
+		</navigator>
+		<navigator open-type="navigate" url="" hover-class="none" class="flex_lr_m p30">
+			<view class="flex_m">
+				<image class="icon_40" src="../../static/logo/ic_my_course.png" mode="aspectFill" />
+				<text class="c666 f32 ml15">使用教程</text>
+			</view>
+			<text class="right-icon c999"></text>
+		</navigator>
+		<navigator open-type="navigate" url="" hover-class="none" class="flex_lr_m p30">
+			<view class="flex_m">
+				<image class="icon_40" src="../../static/logo/ic_my_setting.png" mode="aspectFill" />
+				<text class="c666 f32 ml15">设置中心</text>
+			</view>
+			<text class="right-icon c999"></text>
+		</navigator>
+	</view>
+</view>

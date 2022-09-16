@@ -1,18 +1,25 @@
 // pages/my/index.js
+var api = require('../../config/api.js')
+var util = require('../../utils/util')
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+		logoHeight:'',
+		statusBarHeight:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+		this.setData({
+      statusBarHeight: app.globalData.statusBarHeight,
+      logoHeight: app.globalData.navBarHeight - app.globalData.statusBarHeight
+    })
   },
 
   /**

@@ -59,6 +59,20 @@
           "query": "id=6322ebe8b5cc25491a29e590",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "我的",
+          "pathName": "pages/my/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "患者",
+          "pathName": "pages/patient/tablist/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

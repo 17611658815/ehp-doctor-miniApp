@@ -8,7 +8,13 @@ Page({
 	 * 页面的初始数据
 	 */
   data: {
-    list: [],
+		list: [{
+			name:'李嘉豪',
+			patientid:290,
+			content:'你好大夫',
+			sessionid:'158_290_1662606790462',
+			photo:'https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83ep3AjedYcXJbxpRvR070h5icX4DAqJJKhzxVrQiaJlQic8xfHia6YPRukgOwCpVoubicsMyhpibDC18sN5g/132'
+		}],
     doctorInfo: {},
     logoHeight: null,
     statusBarHeight: null
@@ -31,10 +37,10 @@ Page({
     this.updetaMessage()
   },
   updetaMessage() {
-    const chatList = util.getChatList('chatList')
-    this.setData({
-      list: chatList
-    })
+    // const chatList = util.getChatList('chatList')
+    // this.setData({
+    //   list: chatList
+    // })
   },
   // 置顶
   handleTop() {

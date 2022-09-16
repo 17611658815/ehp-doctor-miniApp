@@ -115,3 +115,20 @@
   flex: 1;
   min-width: 0;
 }
+
+.icon_40{
+	width: 40rpx;
+	height: 40rpx;
+}
+.icon_50{
+	width: 50rpx;
+	height: 50rpx;
+}
+.icon_60{
+	width: 60rpx;
+	height: 60rpx;
+}
+.icon_80{
+	width: 80rpx;
+	height: 80rpx;
+}
