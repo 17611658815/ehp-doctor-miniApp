@@ -15,6 +15,7 @@ page {
   --labelColor: #38bf87;
   --redColor: #F05542;
   --orangeColor: #FF9B3A;
+  --placeholderColor: #B4B4B4;
   --whiteColor: #ffffff;
   --btnThemeColor: #2893ff;
   --btnRadius: 8rpx;
@@ -78,6 +79,9 @@ input {
 }
 .color-success {
   color: #38bf87;
+}
+.color-placeholder {
+  color: #B4B4B4;
 }
 
 .bg-color-white {

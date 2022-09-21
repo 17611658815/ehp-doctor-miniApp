@@ -17,6 +17,11 @@
   display: flex;
   justify-content: flex-end;
 }
+.flex_line_c_end {
+  display: flex;
+	align-items: center;
+  justify-content: flex-end;
+}
 .flex_tb {
   /* 垂直两端对齐  */
   display: flex;

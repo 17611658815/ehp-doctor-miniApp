@@ -1,0 +1,93 @@
+<navbar isBack="{{true}}" isWhite='true' titleColor='#fff' backgroundColor='#2893ff' navTitle="用法用量"></navbar>
+
+<view class="container bg-color-gray-light pb160">
+	<view class="bg-color-primary p30">
+		<view class="cfff f32 b">
+			{{drugDetail.name}}
+		</view>
+		<view class="f28 cfff mt20">
+			{{drugDetail.spec}}
+		</view>
+		<view class="f28 cfff">
+			常规用法：{{drugDetail.usage}}
+		</view>
+	</view>
+	<view class="bg-color-white">
+		<van-cell is-link border data-list='medicineDosageList' data-key='dosageStr' bind:tap="bindPickerShow">
+			<view slot="title">
+				<view class="c333 f32 b">药品用量<text class="color-danger">*</text></view>
+			</view>
+			<view class="{{drug.dosageStr ? 'c333':'color-placeholder'}}">
+				{{drug.dosageStr ? drug.dosageStr :'请选择药品用量'}}
+			</view>
+		</van-cell>
+		<van-cell is-link border >
+			<view slot="title">
+				<view class="c333 f32 b">单次剂量<text class="color-danger">*</text></view>
+			</view>
+			<view class="flex_c_end tr">
+				<van-stepper value="{{ drug.eachDosageCount }}" data-key='eachDosageCount' step='0.1' decimal-length='2'
+					min='{{drug.doseMin ? drug.doseMin:drug.eachDosageMin}}' max='{{drug.doseMax ? drug.doseMax: 99}}'
+					input-width="40px" button-size="24px" bind:change="onStepperChange">
+				</van-stepper>
+				<view class="{{drug.eachDoseUnit ? 'c333':'color-placeholder'}} ml40" data-list='medicineUnitList' data-key='eachDoseUnit' bind:tap="bindPickerShow">
+					{{drug.eachDoseUnit ? drug.eachDoseUnit :'单位'}}
+				</view>
+			</view>
+		</van-cell>
+		<van-cell is-link border data-list='usageMethodList' data-key='usageMethod' bind:tap="bindPickerShow">
+			<view slot="title">
+				<view class="c333 f32 b">药品用法<text class="color-danger">*</text></view>
+			</view>
+			<view class="{{drug.usageMethod ? 'c333':'color-placeholder'}}">
+				{{drug.usageMethod ? drug.usageMethod :'请选择药品用法'}}
+			</view>
+		</van-cell>
+		<van-cell border>
+			<view slot="title">
+				<view class="c333 f32 b">用药周期<text class="color-danger">*</text></view>
+			</view>
+			<view class="flex_c_end tr">
+				<van-stepper value="{{ drug.drugCycle }}" data-key='drugCycle' min='1'
+					max='{{drug.medicationCycleMax ? drug.medicationCycleMax: 99}}' integer input-width="40px" button-size="24px"
+					bind:change="onStepperChange">
+				</van-stepper>
+				<text class="c333 f28 mr10 ml40">{{drug.drugCycleUnit ? drug.drugCycleUnit : '天'}}</text>
+			</view>
+		</van-cell>
+		<van-cell>
+			<view slot="title">
+				<view class="c333 f32 b">药品数量<text class="color-danger">*</text></view>
+			</view>
+			<view class="flex_c_end tr">
+				<van-stepper value="{{ drug.quantity }}" data-key='quantity' min='0' max='{{249}}' integer input-width="40px"
+					button-size="24px" bind:change="onStepperChange">
+				</van-stepper>
+				<text class="c333 f28 mr10 ml40">{{drug.quantityUnit}}</text>
+			</view>
+		</van-cell>
+
+	</view>
+
+	<view class="bg-color-white p30 mt20">
+		<view class="f32 c333 pb30">
+			备注
+		</view>
+		<textarea placeholder-class="cB4B4B4" data-key='backup' value="{{drug.backup}}" placeholder="请输入..."
+			maxlength="1000" bindinput="onAreaVal"></textarea>
+	</view>
+
+	<view class="fixed b0 l0 w100 bg-color-white">
+		<view class="confir pl30 pr30" bind:tap="handleSave">
+			<button>
+				保存
+			</button>
+		</view>
+	</view>
+</view>
+
+<van-popup show="{{show}}" bind:close='bindPickerCancel' close-on-click-overlay='{{true}}' round='{{true}}'
+	position="bottom">
+	<van-picker show-toolbar columns="{{columns}}" title='请选择' bind:cancel='bindPickerCancel'
+		bind:confirm='bindPickerConfim' />
+</van-popup>

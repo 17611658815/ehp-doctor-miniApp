@@ -1,0 +1,15 @@
+/* pages/prescription/add/index.wxss */
+.rd {
+  color: #ff5555;
+}
+.set-btn{
+	width: 136rpx;
+	border: 2rpx solid #2893ff;
+	border-radius: 44rpx;
+}
+.del-btn{
+	width: 136rpx;
+	border: 2rpx solid #F05542;
+	border-radius: 44rpx;
+	padding: 5rpx 0;
+}

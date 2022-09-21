@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+		"van-stepper": "../../../lib/vant-weapp/stepper/index"
+	},
+	"navigationStyle":"custom",
+	"navigationBarTextStyle": "white"
+}

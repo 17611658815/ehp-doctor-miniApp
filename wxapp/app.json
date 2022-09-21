@@ -14,7 +14,10 @@
     "pages/cases/menstrual/index",
     "pages/cases/examine/index",
     "pages/cases/diagnose/index",
-    "pages/patient/tablist/index"
+    "pages/patient/tablist/index",
+    "pages/prescription/add/index",
+    "pages/drug/list/index",
+    "pages/drug/editor/index"
   ],
   "plugins": {},
   "window": {

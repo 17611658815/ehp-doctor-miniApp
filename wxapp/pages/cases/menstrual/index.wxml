@@ -45,7 +45,7 @@
 	</view>
 </view>
 
-<van-popup show="{{show}}" bind:close='bindPickerCancel' close-on-click-overlay='{{true}}' round='{{true}}'
+<van-popup show="{{show}}" close-on-click-overlay='{{true}}' round='{{true}}'
 	position="bottom">
-	<van-picker show-toolbar columns="{{ menstrualColumns[type] }}" title='请选择' bind:confirm='bindPickerConfim' />
+	<van-picker show-toolbar columns="{{ menstrualColumns[type] }}" title='请选择' bind:cancel='bindPickerCancel' bind:confirm='bindPickerConfim' />
 </van-popup>

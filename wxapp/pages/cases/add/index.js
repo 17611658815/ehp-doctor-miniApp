@@ -29,8 +29,8 @@ Page({
 			},
 			treatmentOptions: '', //治疗意见
 			imgList: ['https://img-pro.naiterui.com/chat/media/image/158/290/20220913/1663064060114.jpg?view=t'], //图片列表
-			diagnosisList: '', //诊断列表
 		}, //病例对象
+		diagnosisList: '', //诊断列表
 		timestamp: '',
 		menstrualColumns: {
 			'status': ['未初潮', '已初潮', '已绝经'],
@@ -217,7 +217,8 @@ Page({
 				consultType,
 				relation,
 				isSecret,
-				globalConfig
+				globalConfig,
+				diagnosisList
 			} = this.data
 			const params = {
 				consultType,
@@ -233,7 +234,7 @@ Page({
 				patientGender: casesInfo.gender,
 				patientName: casesInfo.name,
 				department: casesInfo.department,
-				diagnosisList: medicalRecord.diagnosisList,
+				diagnosisList:diagnosisList,
 				// 更多检测结果
 				diastole: medicalRecord.diastole,
 				heartRete: medicalRecord.heartRete,

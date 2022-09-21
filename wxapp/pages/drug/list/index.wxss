@@ -1,0 +1,75 @@
+/* pages/drug/list/index.wxss */
+.tab{
+  width: 100%;
+  height: 84rpx;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+.tab view{
+  text-align: center;
+  font-size: 28rpx;
+  color: #666666;
+  height: 84rpx;
+  line-height: 84rpx;
+  /* width: 25%; */
+}
+.tab view text{
+  display: inline-block;
+  height: 100%;
+  position: relative;
+}
+.tab view text.cur{
+  color: var(--themeColor);
+  font-weight: bold;
+}
+.tab view text.cur::after{
+  position: absolute;
+  content: '';
+  width: 40rpx;
+  height: 8rpx;
+  border-radius: 2rpx;
+  background: var(--themeColor);
+  left: 50%;
+  margin-left: -20rpx;
+  bottom: 0rpx;
+}
+.drug-photo{
+	width: 188rpx;
+	height: 188rpx;
+	position: relative;
+}
+.drug-photo image{
+	width: 132rpx;
+	height: 132rpx;
+}
+.set-btn{
+	width: 148rpx;
+	border: 2rpx solid #2893ff;
+	padding: 10rpx 0;
+	border-radius: 4rpx;
+}
+.del-btn{
+	width: 148rpx;
+	border: 2rpx solid #F05542;
+	padding: 10rpx 0;
+	border-radius: 4rpx;
+}
+.disabled{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .3);
+	z-index: 9;
+}
+.disabled-icon{
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: #F05542;
+	z-index: 999;
+	padding: 5rpx 10rpx;
+	border-radius: 0 10rpx 0 10rpx;
+}

@@ -32,5 +32,8 @@ module.exports = {
 	caseSign: WxApiRoot + 'emr/case/sign', //post 医师签名
 	caseConfirm: WxApiRoot + 'emr/case/confirm', //post 确认发送病例
 	caseDetail: WxApiRoot + 'emr/record/medicalRecord', //post 病历详情
+	prescriptionInit: WxApiRoot + 'recommend/prescription/init', //post 初始化处方信息
+	productSearch: WxApiRoot + 'ad/product/search', //post 全部药品
+	getDefaultUsage: WxApiRoot + 'ad/medication/getDefaultUsage', //post 默认用法用量
 
 }

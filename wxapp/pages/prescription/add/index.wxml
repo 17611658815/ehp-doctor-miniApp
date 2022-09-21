@@ -1,0 +1,97 @@
+<navbar isBack="{{true}}" backgroundColor='#fff' navTitle="开具处方"></navbar>
+
+<view class="container bg-color-gray-light pb160">
+	<view class="bg-color-white bt10">
+		<view class="f36 c333 tc  pb20 pt30">
+			{{prescription.title}}
+		</view>
+		<view class="f24 c999 flex_lr_m p20 bb1">
+			<text>编号：{{prescription.serialNumber}}</text><text>开具时间：{{timestamp}}</text>
+		</view>
+		<view class="pl30 pr30 pt20 pb20">
+			<view class="flex_m f28 c333">
+				<text class="flex1">姓名：{{prescription.patientName}}</text><text class="flex1">性别：{{prescription.patientGender == 1 ?'男':prescription.patientGender == 0?'女':'未知'}}</text>
+			</view>
+			<view class="flex_m mt20 f28 c333">
+				<text class="flex1">年龄：{{prescription.patientAgeStr}}</text><text class="flex1">科室：{{prescription.departmentName}}</text>
+			</view>
+		</view>
+	</view>
+	<navigator url="/pages/cases/diagnose/index" hover-class="navigator-hover" open-type="navigate"
+		class="bg-color-white mt20 p30">
+		<view class="f32 c333 b">
+			临床诊断 <text class="rd">*</text>
+		</view>
+		<view class="flex_lr_m mt30">
+			<view>
+				<view class="f28 c333 flex1" wx:if='{{diagnosisList}}'>
+					<text class="f28 c333" wx:for="{{diagnosisList}}">{{ index > 0 ? '、'+item:item}}</text>
+				</view>
+				<text class="color-placeholder f32" wx:else>请输入诊断信息</text>
+			</view>
+			<text class="right-icon c666"></text>
+		</view>
+	</navigator>
+	<view class="bg-color-white mt20 p30">
+		<view class="flex_lr_m">
+			<text class="f44 c333 b">Rp:</text>
+			<view class="flex_c_m bg-color-primary p10" style="border-radius: 4rpx;">
+				<image class="icon_40" src="../../../static/logo/ic_add_medicine.png" />
+				<navigator class="cfff f28" url="/pages/drug/list/index" hover-class="navigator-hover" open-type="navigate">
+					添加药品
+				</navigator>
+			</view>
+		</view>
+		<view class="medicine bb1 pb30" wx:for="{{drugList}}" wx:key="index">
+			<view>
+				<view class="flex_lr_m f30 c333">
+					<text>
+						{{item.name}}
+					</text>
+					<text>
+						x{{item.quantity}}盒
+					</text>
+				</view>
+				<view class="f24 c999 mt10">
+					用法：每小时1次，每次1袋，饭后服用
+				</view>
+			</view>
+			<view class="flex_c_end mt20">
+				<view class="color-primary f24 flex_c_m set-btn" data-id='{{1}}' bind:tap="handleEdit">
+					修改用量
+				</view>
+				<view class="color-danger f24 flex_c_m ml20 del-btn" bind:tap="handleDel">
+					删除
+				</view>
+			</view>
+		</view>
+		<view class="flex_c_end">
+			<text class="f32 c666">
+				总金额：
+			</text>
+			<text class="f32 color-danger b">
+				¥126
+			</text>
+		</view>
+	</view>
+	<view class="bg-color-white mt20 p30 mb20">
+		<view class="f24 c333">
+			医生：{{prescription.doctorName}}
+		</view>
+		<view class="f24 c333 mt20">
+			审核药师：<text class="f24 color-placeholder">{{prescription.pharmacistName}}</text>
+		</view>
+		<view class="f24 c333 mt20">
+			调配/发药：<text class="f24 color-placeholder">由调配/发药人员签名</text>
+		</view>
+
+	</view>
+
+	<view class="fixed b0 l0 w100 bg-color-white">
+		<view class="confir pl30 pr30" bind:tap="handleSave">
+			<button>
+				发送处方
+			</button>
+		</view>
+	</view>
+</view>

@@ -124,7 +124,7 @@ Page({
 			checkedList
 		} = this.data
 		prevPage.setData({
-			'medicalRecord.diagnosisList': checkedList
+			'diagnosisList': checkedList
 		}, () => {
 			wx.navigateBack({
 				delta: 1

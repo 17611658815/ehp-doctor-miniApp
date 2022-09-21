@@ -81,11 +81,10 @@
 		<view class="consult-list-item bb1" wx:for="{{list}}" wx:key="index">
 			<vant-swipe-cell id="swipe-cell" right-width="{{ 195 }}" async-close data-item="{{index}}"
 				id='for-close-{{index}}'>
-				<view class="left-content p30" data-index="{{index}}" data-patientId='{{item.patientid}}'  data-sessionId='{{item.sessionid}}' catchtap='handleTap'>
+				<view class="p30" data-index="{{index}}" data-patientId='{{item.patientid}}'  data-sessionId='{{item.sessionid}}' catchtap='handleTap'>
 					<view class="flex_m">
 						<view class="flex_m">
-							<image src="{{item.photo}}" mode="aspectFill"
-								style="width:90rpx;height:90rpx;border-radius: 50%;" />
+							<image src="{{item.photo}}" mode="aspectFill" style="width:90rpx;height:90rpx;border-radius: 50%;" />
 						</view>
 						<view class="ml15">
 							<view>

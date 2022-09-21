@@ -18,7 +18,7 @@
 				<view class="flex_m f24 c444 color-primary" wx:if='{{countdown > 0}}'>
 					<view class="flex_m">
 						<view class="f22 color-primary">问诊中:</view>
-						<view class="f22 color-primary" >
+						<view class="f22 color-primary">
 							<van-count-down class="f22 color-primary" time="{{ countdown }}" />
 						</view>
 					</view>
@@ -36,7 +36,7 @@
 	<template is='consult'
 		data="{{messageArr,baseUrl,previewList,doctorId,isAgain,scrollIntoView,InquirerInfo,scrollHeight,scrollTop,patientRemarkInfo,static,userInfo}}"></template>
 	<!--底部输入框  -->
-<view id="chatBtn" class='chatinput-wrapper bg-color-white flex_m {{inputBottom==0 ? "envBottom":""}}'
+	<view id="chatBtn" class='chatinput-wrapper bg-color-white flex_m {{inputBottom==0 ? "envBottom":""}}'
 		style='bottom:{{inputBottom}}px' catchtap='stopEventPropagation'>
 		<view class="w100">
 			<view class='chatinput-content'>
@@ -53,17 +53,17 @@
 					hover-class="none" catchtouchstart='longPressStart' catchtouchmove='pressMove' catchtouchend='longPressEnd'
 					catchtouchcancel="touchCanel">按住说话</button>
 				<view class="chatinput-box flex_c_m ml10 mr20">
-					<image src='/static/images/navtab.png' catchtap='handleShowNav'
-						class='chatinput-img' style="width:46rpx;height:46rpx"></image>
+					<image src='/static/images/navtab.png' catchtap='handleShowNav' class='chatinput-img'
+						style="width:46rpx;height:46rpx"></image>
 				</view>
 			</view>
 			<view class="chatinput-nav flex mt20" wx:if="{{sendMessageNav}}">
 				<view class="flex_line_c_m">
-					<image src='/static/images/picture.png' catchtap='chooseImageToSend'
-						class='chatinput-img' mode="heightFix" style="width:46rpx;height:36rpx"></image>
-						<view class="f24 c999">
-							图片
-						</view>
+					<image src='/static/images/picture.png' catchtap='chooseImageToSend' class='chatinput-img' mode="heightFix"
+						style="width:46rpx;height:36rpx"></image>
+					<view class="f24 c999">
+						图片
+					</view>
 				</view>
 				<!-- <view class="flex_line_c_m">
 					<image src='/static/images/camera.png' catchtap='chooseImageToSend'
@@ -73,32 +73,32 @@
 						</view>
 				</view> -->
 				<view bind:tap="handleNavigateTop" data-url="/pages/cases/add/index" class="flex_line_c_m">
-					<image src='/static/images/add.png'
-						class='chatinput-img' mode="heightFix" style="width:46rpx;height:36rpx"></image>
-						<view class="f24 c999">
-							病例
-						</view>
+					<image src='/static/images/add.png' class='chatinput-img' mode="heightFix" style="width:46rpx;height:36rpx">
+					</image>
+					<view class="f24 c999">
+						病例
+					</view>
 				</view>
 				<view class="flex_line_c_m">
-					<image src='/static/images/message.png' catchtap='chooseImageToSend'
-						class='chatinput-img' mode="heightFix" style="width:46rpx;height:36rpx"></image>
-						<view class="f24 c999">
-							常用语
-						</view>
+					<image src='/static/images/message.png' catchtap='chooseImageToSend' class='chatinput-img' mode="heightFix"
+						style="width:46rpx;height:36rpx"></image>
+					<view class="f24 c999">
+						常用语
+					</view>
+				</view>
+				<view class="flex_line_c_m" bind:tap="handleNavigateTop" data-url="/pages/prescription/add/index">
+					<image src='/static/images/prescription.png' class='chatinput-img' mode="heightFix"
+						style="width:46rpx;height:36rpx"></image>
+					<view class="f24 c999">
+						处方
+					</view>
 				</view>
 				<view class="flex_line_c_m">
-					<image src='/static/images/prescription.png' catchtap='chooseImageToSend'
-						class='chatinput-img' mode="heightFix" style="width:46rpx;height:36rpx"></image>
-						<view class="f24 c999">
-							处方
-						</view>
-				</view>
-				<view class="flex_line_c_m">
-					<image src='/static/images/chineseMedicine.png' catchtap='chooseImageToSend'
-						class='chatinput-img' mode="heightFix" style="width:46rpx;height:36rpx"></image>
-						<view class="f24 c999">
-							中药处方
-						</view>
+					<image src='/static/images/chineseMedicine.png' catchtap='chooseImageToSend' class='chatinput-img'
+						mode="heightFix" style="width:46rpx;height:36rpx"></image>
+					<view class="f24 c999">
+						中药处方
+					</view>
 				</view>
 			</view>
 		</view>

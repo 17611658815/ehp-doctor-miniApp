@@ -5,7 +5,6 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		unit: '', //单位
 		type: 'status',
 		title: '', //标题
 		examine: {

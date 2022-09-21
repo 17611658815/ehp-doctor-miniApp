@@ -1,0 +1,43 @@
+<!--pages/drug/list/index.wxml-->
+<navbar isBack="{{true}}" backgroundColor='#fff' navTitle="全部药品"></navbar>
+<view class="container bg-color-white">
+	<view class="tab flex" style="top:{{ 44 + statusBarHeight}}px;">
+		<view wx:for="{{tabLits}}" class="flex1 flex_c_m" wx:key="index">
+			<text class="{{currentTab == index?'cur':''}}" bindtap="handleSwitech"
+				data-index='{{index}}'>{{item.title}}</text>
+		</view>
+		<view class="flex_lr_m">
+			<image class="icon_40 mr20" src="../../../static/logo/ic_nav_search.png" mode="aspectFill" />
+		</view>
+	</view>
+	<view style="padding-top:84rpx">
+		<block wx:if='{{currentTab == 0}}'>
+			<view class="flex_c_m p30 bb1 container-radius" wx:for="{{list}}" wx:key="index">
+				<view class="drug-photo flex_c_m">
+					<view class="disabled container-radius" wx:if="{{item.stockNum<=item.inventoryWarningValue}}"></view>
+					<view class="cfff f24 disabled-icon" wx:if="{{item.stockNum<=item.inventoryWarningValue}}">缺货</view>
+					<image src="{{item.icon}}" mode="aspectFill" lazy-load="{{true}}" />
+				</view>
+				<view class="flex1 ml20">
+					<view class="f30 c333 ell_more ell_2">
+						{{item.name}}
+					</view>
+					<view class="f24 c999 mt10">
+						{{item.company}}
+					</view>
+					<view class="flex_lr_m mt10">
+						<view class="f30 color-danger b">
+							¥{{item.salePrice}}
+						</view>
+							<view class="del-btn color-danger f24 flex_c_m" data-item='{{item}}' bind:tap="handledel" wx:if='{{item.checked}}'>
+							移出处方笺
+						</view>
+						<view class="set-btn cfff bg-color-primary f24 flex_c_m" data-index='{{index}}' data-item='{{item}}' bind:tap="handleAdd" wx:else>
+							加入处方笺
+						</view>
+					</view>
+				</view>
+			</view>
+		</block>
+	</view>
+</view>
