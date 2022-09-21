@@ -15,7 +15,8 @@ Page({
 		drugDetail: null,
 		globalConfig: null,
 		columnsType: '',
-		typeKey:''
+		typeKey: '',
+		editType: '',
 	},
 
 	/**
@@ -29,13 +30,22 @@ Page({
 		} = wx.getStorageSync('globalConfig')
 		const dosageList = medicineDosageList.map(item => item.dosageStr)
 		this.setData({
-			skuId: options.skuIds,
+			skuId: options.skuId,
+			editType: options.type,
 			drugDetail: app.globalData.drugDetail,
 			'globalConfig.medicineUnitList': medicineUnitList,
 			'globalConfig.usageMethodList': usageMethodList,
 			'globalConfig.medicineDosageList': dosageList
 		}, () => {
-			this.getDefault()
+			if (options.type == 'add') {
+				this.getDefault()
+			} else {
+				console.log(app.globalData.drugDetail, 43)
+				app.globalData.drugDetail.drugCycle = app.globalData.drugDetail.drugCycle ? app.globalData.drugDetail.drugCycle : 1
+				this.setData({
+					drug: app.globalData.drugDetail
+				})
+			}
 		})
 	},
 	onStepperChange(e) {
@@ -58,8 +68,10 @@ Page({
 	handleSave() {
 		try {
 			const {
-				drug
+				drug,
+				editType
 			} = this.data
+			console.log(drug, drug.drugCycle, 74)
 			if (!drug.dosageStr) {
 				util.showToast({
 					'title': '请选择药品用量'
@@ -90,15 +102,36 @@ Page({
 				})
 				return
 			}
+			app.globalData.drugDetail.usage = `${drug.dosageStr}, 每次${drug.eachDosageCount}${drug.eachDoseUnit}`
+			const page = getCurrentPages()
+			let prevPage = editType == 'add' ? page[page.length - 3] : page[page.length - 2]
+			let index = prevPage.data.drugList.findIndex(item => item.skuId === drug.skuId)
+			if(index!=-1){
+				prevPage.data.drugList[index] = drug
+			}else{
+				app.globalData.drugIdList.push(drug.skuId)
+				prevPage.data.drugList.push(drug)
+			}
+			prevPage.setData({
+				drugList:	prevPage.data.drugList
+			},()=>{
+				wx.navigateBack({
+					delta: editType == 'add' ?  2 : 1
+				});
+			})
+			console.log(prevPage.data.drugList,117)
+			
+			
 		} catch (error) {
 			throw new Error(error)
 		}
 	},
-	// 药品列表
+	// 默认用法用量
 	async getDefault() {
 		try {
 			const {
-				skuId
+				skuId,
+				drugDetail
 			} = this.data
 			const {
 				data
@@ -112,10 +145,10 @@ Page({
 					duration: 3000
 				})
 			}
-			console.log(data.data, 107)
-			data.data[0].eachDosageMin = data.data[0].eachDosageCount
+			data.data[0].drugCycle = data.data[0].drugCycle ? data.data[0].drugCycle : 1
+			const detail = Object.assign(drugDetail, data.data[0])
 			this.setData({
-				drug: data.data[0]
+				drug: detail
 			})
 		} catch (error) {
 			throw new Error(error)
@@ -123,21 +156,22 @@ Page({
 	},
 	bindPickerShow(e) {
 		const {
-			list,key
+			list,
+			key
 		} = e.currentTarget.dataset
 		const {
 			globalConfig
 		} = this.data
 		this.setData({
-			columns:globalConfig[list],
-			typeKey:key
-		},()=>{
+			columns: globalConfig[list],
+			typeKey: key
+		}, () => {
 			this.setData({
 				show: true,
 			})
 		})
-		console.log(globalConfig,key,137)
-		console.log(e,138)
+		console.log(globalConfig, key, 137)
+		console.log(e, 138)
 	},
 	bindPickerCancel() {
 		this.setData({
@@ -153,11 +187,10 @@ Page({
 			typeKey
 		} = this.data
 		this.setData({
-			[`drug.${typeKey}`]:value
+			[`drug.${typeKey}`]: value
 		}, () => {
 			this.bindPickerCancel()
 		})
-		console.log(this.data.drug,160)
 	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成

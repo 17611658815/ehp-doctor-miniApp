@@ -8,12 +8,13 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		drugList:[],
+		drugList: [],
 		timestamp: '',
 		prescription: null,
 		patientId: '',
 		inquirerId: '',
-		diagnosisList: null
+		diagnosisList: null,
+		totalPrices: null
 	},
 
 	/**
@@ -22,7 +23,8 @@ Page({
 	onLoad(options) {
 		this.setData({
 			patientId: options.patientId,
-			inquirerId: options.inquirerId
+			inquirerId: options.inquirerId,
+			totalPrices: this.onDrugPrice()
 		}, () => {
 			this.init()
 		})
@@ -30,10 +32,13 @@ Page({
 	// 编辑用量
 	handleEdit(e) {
 		const {
-			id
-		} = e.currentTarget.id
+			item
+		} = e.currentTarget.dataset
+		console.log(e)
+		app.globalData.drugDetail = item
+		console.log(item, 36)
 		wx.navigateTo({
-			url: '/pages/drug/editor/index'
+			url: `/pages/drug/editor/index?type=edit&skuId=${item.skuId}`
 		})
 	},
 	// 删除药品
@@ -43,13 +48,12 @@ Page({
 			content: '确认删除该药品？',
 			success(res) {
 				if (res.confirm) {
-					
+
 				} else if (res.cancel) {
 					console.log('用户点击取消')
 				}
 			}
 		})
-
 	},
 	async init() {
 		try {
@@ -79,6 +83,19 @@ Page({
 			throw new Error(error)
 		}
 	},
+	onDrugPrice() {
+		let sum = 0
+		const {
+			drugList
+		} = this.data
+		drugList.forEach(item => {
+			sum += item.salePrice / 1 * item.quantity
+		});
+		return this.toFixedThree(sum)
+	},
+	toFixedThree(num) {
+		return (Math.round(num * 1000) / 1000).toFixed(2)
+	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
@@ -90,7 +107,9 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow() {
-
+		this.setData({
+			totalPrices: this.onDrugPrice()
+		})
 	},
 
 	/**

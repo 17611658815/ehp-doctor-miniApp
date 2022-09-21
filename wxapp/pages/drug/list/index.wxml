@@ -29,7 +29,7 @@
 						<view class="f30 color-danger b">
 							¥{{item.salePrice}}
 						</view>
-							<view class="del-btn color-danger f24 flex_c_m" data-item='{{item}}' bind:tap="handledel" wx:if='{{item.checked}}'>
+							<view class="del-btn color-danger f24 flex_c_m" data-index='{{index}}' data-item='{{item}}' bind:tap="handledel" wx:if='{{item.checked}}'>
 							移出处方笺
 						</view>
 						<view class="set-btn cfff bg-color-primary f24 flex_c_m" data-index='{{index}}' data-item='{{item}}' bind:tap="handleAdd" wx:else>

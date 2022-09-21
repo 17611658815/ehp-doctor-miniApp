@@ -391,6 +391,7 @@ App({
 		doctorName: '',
 		templateId: [],
 		peopleList: [], //就诊人列表
-		loginNum: 0
+		loginNum: 0,
+		drugIdList:[]
 	}
 })

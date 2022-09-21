@@ -3,13 +3,13 @@
 <view class="container bg-color-gray-light pb160">
 	<view class="bg-color-primary p30">
 		<view class="cfff f32 b">
-			{{drugDetail.name}}
+			{{drug.name}}
 		</view>
 		<view class="f28 cfff mt20">
-			{{drugDetail.spec}}
+			{{drug.spec}}
 		</view>
 		<view class="f28 cfff">
-			常规用法：{{drugDetail.usage}}
+			常规用法：{{drug.usage}}
 		</view>
 	</view>
 	<view class="bg-color-white">
@@ -26,8 +26,8 @@
 				<view class="c333 f32 b">单次剂量<text class="color-danger">*</text></view>
 			</view>
 			<view class="flex_c_end tr">
-				<van-stepper value="{{ drug.eachDosageCount }}" data-key='eachDosageCount' step='0.1' decimal-length='2'
-					min='{{drug.doseMin ? drug.doseMin:drug.eachDosageMin}}' max='{{drug.doseMax ? drug.doseMax: 99}}'
+				<van-stepper value="{{ drug.eachDosageCount }}" data-key='eachDosageCount' step='0.1'
+					min='{{drug.doseMin}}' max='{{drug.doseMax ? drug.doseMax: 99}}'
 					input-width="40px" button-size="24px" bind:change="onStepperChange">
 				</van-stepper>
 				<view class="{{drug.eachDoseUnit ? 'c333':'color-placeholder'}} ml40" data-list='medicineUnitList' data-key='eachDoseUnit' bind:tap="bindPickerShow">
@@ -48,7 +48,7 @@
 				<view class="c333 f32 b">用药周期<text class="color-danger">*</text></view>
 			</view>
 			<view class="flex_c_end tr">
-				<van-stepper value="{{ drug.drugCycle }}" data-key='drugCycle' min='1'
+				<van-stepper value="{{ drug.drugCycle }}" data-key='drugCycle' 
 					max='{{drug.medicationCycleMax ? drug.medicationCycleMax: 99}}' integer input-width="40px" button-size="24px"
 					bind:change="onStepperChange">
 				</van-stepper>
@@ -60,7 +60,7 @@
 				<view class="c333 f32 b">药品数量<text class="color-danger">*</text></view>
 			</view>
 			<view class="flex_c_end tr">
-				<van-stepper value="{{ drug.quantity }}" data-key='quantity' min='0' max='{{249}}' integer input-width="40px"
+				<van-stepper value="{{ drug.quantity }}" data-key='quantity' max='{{249}}' integer input-width="40px"
 					button-size="24px" bind:change="onStepperChange">
 				</van-stepper>
 				<text class="c333 f28 mr10 ml40">{{drug.quantityUnit}}</text>

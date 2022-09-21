@@ -53,11 +53,11 @@
 					</text>
 				</view>
 				<view class="f24 c999 mt10">
-					用法：每小时1次，每次1袋，饭后服用
+					用法：{{item.usage}}
 				</view>
 			</view>
 			<view class="flex_c_end mt20">
-				<view class="color-primary f24 flex_c_m set-btn" data-id='{{1}}' bind:tap="handleEdit">
+				<view class="color-primary f24 flex_c_m set-btn" data-item='{{item}}' bind:tap="handleEdit">
 					修改用量
 				</view>
 				<view class="color-danger f24 flex_c_m ml20 del-btn" bind:tap="handleDel">
@@ -70,7 +70,7 @@
 				总金额：
 			</text>
 			<text class="f32 color-danger b">
-				¥126
+				¥{{totalPrices}}
 			</text>
 		</view>
 	</view>

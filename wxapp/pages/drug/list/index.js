@@ -54,7 +54,6 @@ Page({
 		try {
 			const {
 				listQuery,
-				checkedList
 			} = this.data
 			const {
 				data
@@ -66,53 +65,48 @@ Page({
 					duration: 3000
 				})
 			}
-			data.data.result.forEach(element => {
-				checkedList.forEach(item => {
-					console.log()
-					if (element.productId == item) {
-						element.checked = true
-					} else {
-						element.checked = false
+			let result = data.data.result
+			let drugIdList = app.globalData.drugIdList
+			for (let i = 0; i < result.length; i++) {
+				for (let k = 0; k < drugIdList.length; k++) {
+					if (result[i].skuId == drugIdList[k]) {
+						result[i].checked = true
 					}
-				})
-			});
+				}
+			}
 			this.setData({
-				list: data.data.result
+				list: result
 			})
+			
 		} catch (error) {
 			throw new Error(error)
 		}
 	},
-	handledel(e) {
-
+	handledel(event) {
+		const {
+			item,
+			index
+		} = event.currentTarget.dataset
+		const page = getCurrentPages()
+		const prevPage = page[page.length - 2]
+		const findindex = prevPage.data.drugList.findIndex(item => item.skuId === item.skuId)
+		app.globalData.drugIdList.splice(findindex, 1)
+		prevPage.data.drugList.splice(findindex, 1)
+		prevPage.setData({
+			drugList: prevPage.data.drugList
+		})
+		this.setData({
+			[`list[${index}].checked`]: false
+		})
 	},
 	handleAdd(e) {
 		const {
-			checkedList
-		} = this.data
-		const {
 			item
 		} = e.currentTarget.dataset
-		// checkedList.push(item.productId)
-		// app.globalData.checkedList = checkedList
-		// console.log(item,index)
-		// const page = getCurrentPages()
-		// const prevPage = page[page.length - 2]
-		// prevPage.data.drugList.push(item)
-		// console.log(prevPage.data.drugList,103)
-		// prevPage.setData({
-		// 	drugList:prevPage.data.drugList
-		// })
-		// console.log(prevPage.data.drugList.push(item),106)
-		// this.setData({
-		// 	checkedList,
-		// 	[`list[${index}].checked`]: true
-		// })
 		app.globalData.drugDetail = item
 		wx.navigateTo({
-			url: `/pages/drug/editor/index?skuIds=${item.skuId}`
+			url: `/pages/drug/editor/index?type=add&skuId=${item.skuId}`
 		})
-		console.log(e, 90)
 	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
