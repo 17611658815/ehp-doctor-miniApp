@@ -89,7 +89,7 @@ Page({
 		} = event.currentTarget.dataset
 		const page = getCurrentPages()
 		const prevPage = page[page.length - 2]
-		const findindex = prevPage.data.drugList.findIndex(item => item.skuId === item.skuId)
+		const findindex = prevPage.data.drugList.findIndex(i => i.skuId === item.skuId)
 		app.globalData.drugIdList.splice(findindex, 1)
 		prevPage.data.drugList.splice(findindex, 1)
 		prevPage.setData({
